@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020214">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Be the first to believe — a fundraising evening for national rowers Nico Chambers & Seric Critchley. June 5, 2026, HIM Business School, Montreux.">
+<title>Alps2LA — Be the First to Believe · Montreux, June 5</title>
+<style>
+@font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-300-normal.woff2') format('woff2'); font-weight:300; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2'); font-weight:600; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --navy:#000080;
+  --red:#FF0000;
+  --red-dim:#CC0000;
+  --orange:#C4623A;
+  --orange-light:#E08A6A;
+  --white:#FFFFFF;
+  --ink:#020214;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Space Grotesk','Helvetica Neue',sans-serif;
+}
+
+html { overflow-x:hidden; background:var(--ink); }
+body { background:transparent; color:var(--white); font-family:var(--fs); overflow-x:hidden; position:relative; }
+
+/* ── GLOBAL FIXED VIDEO BACKGROUND ── */
+#bg-video {
+  position:fixed; inset:0; width:100vw; height:100vh;
+  object-fit:cover; z-index:-2; pointer-events:none;
+}
+#bg-overlay {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(2,2,20,0.45) 0%,
+    rgba(2,2,20,0.30) 40%,
+    rgba(2,2,20,0.55) 100%);
+}
+#bg-scanlines {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:0.025;
+  background:repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px
+  );
+}
+::-webkit-scrollbar { width:2px; }
+::-webkit-scrollbar-track { background:var(--ink); }
+::-webkit-scrollbar-thumb { background:var(--navy); border-radius:9999px; }
+
+/* ── PROGRESS ── */
+#prog {
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg,var(--navy),var(--red));
+  z-index:400; pointer-events:none;
+  box-shadow:0 0 10px rgba(255,0,0,0.4);
+}
+
+/* ── LOADER ── */
+#loader {
+  position:fixed; inset:0; z-index:1000;
+  background:var(--ink);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:32px;
+  transition:opacity 800ms ease;
+}
+#loader.hidden { opacity:0; pointer-events:none; }
+.loader-logo { opacity:0; transform:translateY(16px); animation:fadeUp 700ms 100ms ease forwards; }
+.loader-num {
+  font-family:var(--fd); font-size:clamp(72px,12vw,140px);
+  color:#fff; line-height:1; letter-spacing:-0.04em;
+  opacity:0; animation:fadeUp 500ms 300ms ease forwards;
+}
+.loader-num em { font-style:normal; color:var(--red); }
+.loader-line {
+  width:180px; height:1px; background:rgba(255,255,255,0.08);
+  position:relative; overflow:hidden;
+  opacity:0; animation:fadeUp 400ms 400ms ease forwards;
+}
+.loader-fill { position:absolute; inset:0 100% 0 0; background:var(--red); transition:right 80ms linear; }
+.loader-label {
+  font-family:var(--fs); font-size:10px; font-weight:700;
+  letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.22);
+  opacity:0; animation:fadeUp 400ms 500ms ease forwards;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px; height:64px;
+  transition:background 500ms ease, border-color 500ms ease;
+  border-bottom:1px solid transparent;
+}
+nav.solid {
+  background:rgba(2,2,20,0.95);
+  backdrop-filter:blur(24px) saturate(1.5);
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);
+  border-bottom-color:rgba(0,0,128,0.2);
+}
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
+.nav-logo img { transition:transform 300ms ease; }
+.nav-logo:hover img { transform:scale(1.05); }
+.nav-links { display:flex; gap:28px; }
+.nav-links a {
+  font-family:var(--fs); font-size:13px; font-weight:500;
+  color:rgba(255,255,255,0.5); text-decoration:none; letter-spacing:0.02em;
+  transition:color 200ms; position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-2px; left:0; right:0; height:1px;
+  background:var(--red); transform:scaleX(0); transform-origin:right;
+  transition:transform 300ms ease;
+}
+.nav-links a:hover { color:#fff; }
+.nav-links a:hover::after { transform:scaleX(1); transform-origin:left; }
+.nav-cta {
+  font-family:var(--fs); font-size:13px; font-weight:700;
+  background:var(--red); color:#fff; border:none; border-radius:9999px;
+  padding:10px 22px; cursor:pointer; letter-spacing:0.02em;
+  text-decoration:none; display:inline-block;
+  box-shadow:0 2px 16px rgba(255,0,0,0.3);
+  transition:background 200ms, transform 150ms;
+}
+.nav-cta:hover { background:var(--red-dim); transform:scale(0.97); }
+
+/* ════════════════════════════════════════════════
+   VIDEO SCROLL SECTION
+   The video is sticky inside a tall container.
+   Scrolling through the container scrubs the video.
+   Content overlays appear at specific scroll positions.
+════════════════════════════════════════════════ */
+#video-scroll {
+  position:relative;
+  /* Height = how long the scroll experience lasts.
+     600vh = 6 full screens of scroll travel */
+  height:450vh;
+}
+
+/* The sticky wrapper holds the panels fixed on screen
+   while the user scrolls through the 600vh container.
+   The actual video sits behind everything as a fixed bg. */
+#video-sticky {
+  position:sticky; top:0;
+  width:100%; height:100vh;
+  overflow:hidden;
+}
+
+/* ── VIDEO OVERLAY PANELS ──
+   Each panel is absolutely positioned, fills the sticky viewport,
+   and is shown/hidden by GSAP based on scroll progress            */
+.vo-panel {
+  position:absolute; inset:0; z-index:3;
+  display:flex; align-items:center; justify-content:center;
+  padding:0 32px; opacity:0; pointer-events:none;
+}
+.vo-panel.active { pointer-events:auto; }
+
+/* Panel-specific layouts */
+.vo-center { flex-direction:column; text-align:center; }
+.vo-split  { justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; gap:60px; }
+.vo-left   { flex-direction:column; text-align:left; align-items:flex-start; max-width:900px; margin:0 auto; width:100%; }
+
+/* ── Clip-line text reveal (Organimo signature technique) ── */
+.clip-line { overflow:hidden; display:block; }
+.clip-inner { display:block; }
+
+/* ── Typography inside panels ── */
+.vo-eyebrow {
+  font-family:var(--fs); font-size:11px; font-weight:700;
+  letter-spacing:0.26em; text-transform:uppercase;
+  color:rgba(255,255,255,0.5); margin-bottom:24px;
+}
+.vo-h {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(48px,8vw,112px); line-height:1.0;
+  letter-spacing:-0.03em; margin-bottom:16px;
+}
+.vo-h em { font-style:italic; color:var(--orange-light); }
+.vo-sub {
+  font-family:var(--fs); font-size:clamp(15px,1.8vw,20px);
+  font-weight:300; color:rgba(255,255,255,0.6); line-height:1.75;
+  max-width:560px;
+}
+.vo-label {
+  font-family:var(--fs); font-size:10px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--red);
+  margin-bottom:14px;
+}
+.vo-stat-h {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(40px,6vw,80px); line-height:1.0; letter-spacing:-0.03em;
+}
+.vo-stat-h em { font-style:italic; color:var(--orange-light); }
+.vo-body {
+  font-family:var(--fs); font-size:clamp(14px,1.6vw,18px);
+  font-weight:300; color:rgba(255,255,255,0.55); line-height:1.8;
+  max-width:480px; margin-top:16px;
+}
+
+/* Athlete card inside video */
+.vo-athletes { display:flex; gap:56px; justify-content:center; flex-wrap:wrap; }
+.vo-athlete { display:flex; flex-direction:column; align-items:center; gap:14px; max-width:260px; }
+.vo-ath-photo {
+  width:140px; height:140px; border-radius:9999px; overflow:hidden;
+  border:2px solid rgba(255,255,255,0.2);
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+}
+.vo-ath-photo img { width:100%; height:100%; object-fit:cover; }
+.vo-ath-name { font-family:var(--fd); font-size:26px; color:#fff; letter-spacing:-0.02em; }
+.vo-ath-role {
+  font-family:var(--fs); font-size:10px; font-weight:700;
+  letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35);
+}
+.vo-ath-bio { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.8; text-align:center; }
+
+/* Photo layered over video */
+.vo-photo-wrap {
+  position:relative; border-radius:12px; overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,0.6);
+  flex-shrink:0;
+}
+.vo-photo-wrap img { width:380px; max-width:40vw; display:block; object-fit:cover; height:480px; }
+.vo-photo-caption {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(to top, rgba(2,2,20,0.92), transparent);
+  padding:28px 20px 16px;
+  font-family:var(--fs); font-size:11px; font-weight:700;
+  letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.5);
+}
+
+/* CTA button in video overlay */
+.vo-btn {
+  display:inline-block; margin-top:36px;
+  font-family:var(--fs); font-size:15px; font-weight:700;
+  background:var(--red); color:#fff; border:none; border-radius:9999px;
+  padding:16px 44px; cursor:pointer; letter-spacing:0.02em;
+  text-decoration:none;
+  box-shadow:0 4px 28px rgba(255,0,0,0.45);
+  transition:background 200ms, transform 150ms, box-shadow 250ms;
+}
+.vo-btn:hover { background:var(--red-dim); transform:scale(0.97); box-shadow:0 8px 36px rgba(255,0,0,0.55); }
+.vo-btn-ghost {
+  display:inline-block; margin-top:16px; margin-left:16px;
+  font-family:var(--fs); font-size:15px; font-weight:500;
+  background:transparent; color:rgba(255,255,255,0.7);
+  border:1.5px solid rgba(255,255,255,0.25); border-radius:9999px;
+  padding:15px 32px; cursor:pointer; letter-spacing:0.02em;
+  text-decoration:none;
+  transition:border-color 200ms, color 200ms;
+}
+.vo-btn-ghost:hover { border-color:rgba(255,255,255,0.7); color:#fff; }
+
+/* Scroll progress indicator inside video */
+#video-progress-dots {
+  position:absolute; right:32px; top:50%; transform:translateY(-50%);
+  z-index:10; display:flex; flex-direction:column; gap:12px;
+}
+.vp-dot {
+  width:6px; height:6px; border-radius:9999px;
+  background:rgba(255,255,255,0.2);
+  transition:all 400ms cubic-bezier(0.16,1,0.3,1);
+}
+.vp-dot.on { background:var(--red); height:26px; border-radius:3px; }
+
+/* Scroll hint */
+#scroll-hint {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  z-index:10; display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+#scroll-hint span {
+  font-family:var(--fs); font-size:9px; font-weight:700;
+  letter-spacing:0.26em; text-transform:uppercase; color:rgba(255,255,255,0.22);
+}
+.scroll-rod {
+  width:1px; height:48px;
+  background:linear-gradient(to bottom, rgba(255,0,0,0.6), transparent);
+  animation:rodPulse 2.5s ease-in-out infinite;
+}
+
+/* ════════════════════════════════
+   SECTIONS BELOW THE VIDEO
+════════════════════════════════ */
+
+/* ── KINETIC QUOTE — transparent so video shows through ── */
+#kquote {
+  min-height:60vh; display:flex; align-items:center; justify-content:center;
+  background:transparent; position:relative; overflow:hidden; padding:72px 48px;
+}
+#kquote::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 50%, rgba(2,2,20,0.55) 0%, rgba(2,2,20,0.15) 60%, transparent 100%);
+}
+.kq-inner { position:relative; z-index:1; text-align:center; max-width:980px; }
+.kq-line {
+  display:block; overflow:hidden; line-height:1.22;
+  font-family:var(--fd); font-weight:400;
+  font-size:clamp(28px,4.8vw,68px); letter-spacing:-0.025em; color:#fff;
+}
+.kq-line em { font-style:italic; color:var(--orange-light); }
+.kq-mask { display:inline-block; }
+.kq-divider { width:40px; height:1px; background:var(--red); margin:36px auto 0; transform-origin:left; }
+.kq-sub {
+  font-family:var(--fs); font-size:15px; font-weight:300;
+  color:rgba(255,255,255,0.42); line-height:1.8; max-width:500px; margin:24px auto 0;
+}
+
+/* ── STATS — transparent ── */
+#stats { background:transparent; padding:56px 48px; border-top:1px solid rgba(255,255,255,0.06); position:relative; }
+#stats::before { content:''; position:absolute; inset:0; background:rgba(2,2,20,0.55); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px); z-index:-1; }
+.stats-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+.stat-item { text-align:center; }
+.stat-num { font-family:var(--fd); font-size:clamp(44px,5vw,68px); color:#fff; line-height:1; letter-spacing:-0.03em; margin-bottom:8px; }
+.stat-num em { font-style:normal; color:var(--red); }
+.stat-lbl { font-family:var(--fs); font-size:11px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.28); }
+
+/* ── EVENT — transparent with subtle dark veil for readability ── */
+#event { background:transparent; padding:110px 48px; position:relative; overflow:hidden; }
+#event::after { content:''; position:absolute; inset:0; background:rgba(2,2,20,0.62); z-index:-1; }
+#event::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(0,0,128,0.6), rgba(255,0,0,0.4), transparent); }
+.event-wrap { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.sec-eye { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:14px; display:block; }
+.sec-h { font-family:var(--fd); font-size:clamp(34px,4vw,56px); font-weight:400; line-height:1.1; letter-spacing:-0.025em; color:#fff; margin-bottom:22px; }
+.sec-h em { font-style:italic; color:var(--orange-light); }
+.sec-p { font-family:var(--fs); font-size:15px; font-weight:300; color:rgba(255,255,255,0.48); line-height:1.85; margin-bottom:36px; }
+.details-list { list-style:none; }
+.detail-row { display:flex; align-items:flex-start; gap:18px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.detail-row:first-child { border-top:1px solid rgba(255,255,255,0.05); }
+.detail-ico { width:38px; height:38px; border-radius:8px; background:rgba(0,0,128,0.18); border:1px solid rgba(0,0,128,0.32); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#88AAFF; transition:background 200ms; }
+.detail-row:hover .detail-ico { background:rgba(0,0,128,0.32); }
+.detail-lbl { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:3px; }
+.detail-val { font-family:var(--fs); font-size:14px; font-weight:500; color:#fff; line-height:1.4; }
+.venue-card { background:rgba(0,0,128,0.08); border:1px solid rgba(0,0,128,0.22); border-radius:16px; padding:36px; position:relative; overflow:hidden; margin-bottom:20px; transition:border-color 300ms,background 300ms; }
+.venue-card:hover { border-color:rgba(0,0,128,0.42); background:rgba(0,0,128,0.14); }
+.venue-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,0,128,0.22) 0%, transparent 70%); }
+.vc-inner { position:relative; z-index:1; }
+.vc-badge { display:inline-flex; align-items:center; gap:7px; background:rgba(255,0,0,0.07); border:1px solid rgba(255,0,0,0.22); border-radius:9999px; padding:5px 13px 5px 7px; margin-bottom:18px; }
+.vc-dot { width:7px; height:7px; border-radius:9999px; background:var(--red); animation:pulseDot 2s ease-in-out infinite; }
+.vc-badge span { font-family:var(--fs); font-size:11px; font-weight:600; color:rgba(255,100,100,0.85); letter-spacing:0.06em; }
+.vc-name { font-family:var(--fd); font-size:28px; color:#fff; margin-bottom:6px; }
+.vc-addr { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.38); line-height:1.7; margin-bottom:22px; }
+.vc-map { display:inline-flex; align-items:center; gap:6px; font-family:var(--fs); font-size:12px; font-weight:600; color:#88AAFF; text-decoration:none; transition:color 150ms; }
+.vc-map:hover { color:#fff; }
+.vc-city { font-family:var(--fd); font-size:68px; color:rgba(255,255,255,0.03); line-height:1; position:absolute; bottom:12px; right:20px; pointer-events:none; letter-spacing:-0.04em; }
+.prog-card { background:rgba(255,255,255,0.018); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:22px; }
+.prog-title { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.24); margin-bottom:16px; }
+.prog-row { display:flex; gap:16px; align-items:baseline; margin-bottom:12px; }
+.prog-row:last-child { margin-bottom:0; }
+.prog-time { font-family:var(--fs); font-size:12px; font-weight:700; color:var(--orange); min-width:40px; }
+.prog-item { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.46); }
+
+/* ── PHOTO BAND ── */
+#photoband { width:100%; height:420px; position:relative; overflow:hidden; }
+.pb-img { width:100%; height:130%; object-fit:cover; object-position:center 20%; filter:brightness(0.5) saturate(0.8); will-change:transform; }
+.pb-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(2,2,20,1) 0%, rgba(2,2,20,0.55) 55%, transparent 100%); padding:52px 48px 32px; display:flex; align-items:flex-end; justify-content:space-between; }
+.pb-label { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+.pb-title { font-family:var(--fd); font-size:clamp(22px,3vw,38px); color:#fff; }
+.pb-title em { color:var(--orange-light); font-style:italic; }
+
+/* ── REGISTER — transparent with dark veil ── */
+#register { padding:110px 48px; background:transparent; position:relative; }
+#register::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(2,2,20,0.55) 0%, rgba(2,2,20,0.72) 100%); pointer-events:none; z-index:-1; }
+.reg-wrap { max-width:700px; margin:0 auto; text-align:center; }
+.form-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:44px; position:relative; overflow:hidden; text-align:left; transition:border-color 300ms; }
+.form-card:hover { border-color:rgba(255,255,255,0.1); }
+.form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(0,0,128,0.8), rgba(255,0,0,0.5), transparent); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.form-group { display:flex; flex-direction:column; gap:5px; }
+.form-group.full { grid-column:1/-1; }
+.form-lbl { font-family:var(--fs); font-size:9px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.form-inp { font-family:var(--fs); font-size:14px; color:#fff; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px 14px; outline:none; width:100%; transition:border-color 200ms,background 200ms,box-shadow 200ms; }
+.form-inp::placeholder { color:rgba(255,255,255,0.15); }
+.form-inp:focus { border-color:rgba(0,0,128,0.75); background:rgba(0,0,128,0.07); box-shadow:0 0 0 3px rgba(0,0,128,0.1); }
+.form-sel { font-family:var(--fs); font-size:14px; color:#fff; background:rgba(255,255,255,0.035); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px 14px; outline:none; width:100%; cursor:pointer; }
+.form-sel:focus { border-color:rgba(0,0,128,0.75); }
+.form-sel option { background:#020214; }
+.form-check { display:flex; align-items:flex-start; gap:10px; margin-top:8px; }
+.form-check input { margin-top:3px; accent-color:var(--red); cursor:pointer; }
+.form-check label { font-family:var(--fs); font-size:12px; font-weight:300; color:rgba(255,255,255,0.3); line-height:1.7; cursor:pointer; }
+#form-err { display:none; margin-top:12px; font-family:var(--fs); font-size:12px; color:#FF7070; font-weight:500; }
+.form-cta { margin-top:24px; }
+.form-success { display:none; flex-direction:column; align-items:center; gap:14px; padding:24px 0; text-align:center; }
+.suc-icon { width:60px; height:60px; border-radius:9999px; background:rgba(255,0,0,0.08); border:2px solid rgba(255,0,0,0.28); display:flex; align-items:center; justify-content:center; }
+.form-success h3 { font-family:var(--fd); font-size:30px; color:#fff; }
+.form-success p { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.42); line-height:1.7; }
+
+/* ── FAQ — transparent with dark veil ── */
+#faq { padding:96px 48px; background:transparent; position:relative; }
+#faq::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, transparent, rgba(0,0,128,0.3), transparent); z-index:1; }
+#faq::after { content:''; position:absolute; inset:0; background:rgba(2,2,20,0.7); z-index:-1; }
+.faq-wrap { max-width:780px; margin:0 auto; }
+.faq-hd { text-align:center; margin-bottom:56px; }
+.faq-item { border-bottom:1px solid rgba(255,255,255,0.05); overflow:hidden; }
+.faq-q { display:flex; align-items:center; justify-content:space-between; padding:20px 0; cursor:pointer; gap:24px; user-select:none; transition:opacity 150ms; }
+.faq-q:hover { opacity:0.82; }
+.faq-qt { font-family:var(--fs); font-size:16px; font-weight:500; color:#fff; line-height:1.4; }
+.faq-ic { width:26px; height:26px; border-radius:9999px; border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:rgba(255,255,255,0.36); transition:background 200ms,border-color 200ms,transform 350ms cubic-bezier(0.16,1,0.3,1); }
+.faq-item.open .faq-ic { background:var(--red); border-color:var(--red); transform:rotate(45deg); color:#fff; }
+.faq-ans { max-height:0; overflow:hidden; transition:max-height 450ms cubic-bezier(0.25,0.1,0.25,1); }
+.faq-item.open .faq-ans { max-height:320px; }
+.faq-ans-in { padding:0 0 24px; font-family:var(--fs); font-size:14px; font-weight:300; color:rgba(255,255,255,0.42); line-height:1.85; }
+
+/* ── SOCIAL — transparent ── */
+#social { padding:72px 48px; background:transparent; text-align:center; position:relative; }
+#social::before { content:''; position:absolute; inset:0; background:rgba(2,2,20,0.62); z-index:-1; }
+.soc-h { font-family:var(--fd); font-size:36px; color:#fff; margin-bottom:6px; }
+.soc-s { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.3); margin-bottom:30px; }
+.ig-btn { display:inline-flex; align-items:center; gap:9px; background:linear-gradient(135deg,rgba(131,58,180,0.15),rgba(253,29,29,0.15),rgba(252,176,69,0.15)); border:1px solid rgba(255,255,255,0.09); border-radius:9999px; padding:13px 26px; color:#fff; text-decoration:none; font-family:var(--fs); font-size:14px; font-weight:600; transition:background 250ms,transform 150ms; }
+.ig-btn:hover { background:linear-gradient(135deg,rgba(131,58,180,0.28),rgba(253,29,29,0.28),rgba(252,176,69,0.28)); transform:scale(0.98); }
+.soc-athlete-links { display:flex; gap:16px; justify-content:center; margin-top:14px; }
+.soc-alink { font-family:var(--fs); font-size:12px; color:rgba(255,255,255,0.3); text-decoration:none; transition:color 150ms; }
+.soc-alink:hover { color:rgba(255,255,255,0.7); }
+.soc-sep { color:rgba(255,255,255,0.14); }
+
+/* ── FOOTER — transparent ── */
+footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; position:relative; }
+.ft-meta { font-family:var(--fs); font-size:12px; color:rgba(255,255,255,0.2); }
+.ft-links { display:flex; gap:22px; }
+.ft-links a { font-family:var(--fs); font-size:12px; color:rgba(255,255,255,0.24); text-decoration:none; transition:color 150ms; }
+.ft-links a:hover { color:rgba(255,255,255,0.6); }
+
+/* ── TWEAKS ── */
+#tweaks { display:none; position:fixed; bottom:22px; right:22px; width:278px; background:rgba(2,2,20,0.97); backdrop-filter:blur(28px); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:22px; z-index:500; box-shadow:0 24px 64px rgba(0,0,0,0.6); }
+.tw-title { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; }
+.tw-x { cursor:pointer; color:rgba(255,255,255,0.24); font-size:18px; line-height:1; transition:color 150ms; }
+.tw-x:hover { color:#fff; }
+.tw-group { margin-bottom:14px; }
+.tw-lbl { font-family:var(--fs); font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:7px; }
+.tw-opts { display:flex; gap:5px; flex-wrap:wrap; }
+.tw-btn { font-family:var(--fs); font-size:11px; font-weight:600; padding:5px 11px; border-radius:9999px; border:1px solid rgba(255,255,255,0.08); background:transparent; color:rgba(255,255,255,0.4); cursor:pointer; transition:all 150ms; }
+.tw-btn.on { background:var(--red); border-color:var(--red); color:#fff; }
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp  { to { opacity:1; transform:none; } }
+@keyframes rodPulse { 0%,100%{opacity:0.3;transform:scaleY(1);}50%{opacity:0.9;transform:scaleY(1.3);} }
+@keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .event-wrap{grid-template-columns:1fr;gap:44px;}
+  .form-row{grid-template-columns:1fr;}
+  .form-card{padding:24px 18px;}
+  #video-progress-dots{display:none;}
+  .pb-caption{padding:32px 20px 24px;flex-direction:column;gap:10px;align-items:flex-start;}
+  #photoband{height:280px;}
+  footer{flex-direction:column;align-items:flex-start;}
+  .kq-line{font-size:clamp(26px,7.5vw,44px);}
+  .stats-grid{grid-template-columns:1fr;gap:24px;}
+  #stats,#kquote,#event,#register,#faq,#social{padding-left:24px;padding-right:24px;}
+  footer{padding:36px 24px;}
+  .vo-h{font-size:clamp(40px,10vw,72px);}
+  .vo-split{flex-direction:column;gap:32px;}
+  .vo-photo-wrap img{width:260px;max-width:70vw;height:320px;}
+  .vo-athletes{gap:32px;}
+  .vo-ath-photo{width:110px;height:110px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     GLOBAL VIDEO BACKGROUND
+     Fixed full-viewport. Scrubs across the entire page scroll.
+     Sits behind everything (z-index: -2).
+════════════════════════════════════════════════════ -->
+<video id="bg-video" src="rowing.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+<div id="bg-overlay"></div>
+<div id="bg-scanlines"></div>
+
+<div id="prog"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">
+    <img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:100px;width:auto;" />
+  </div>
+  <div class="loader-num"><em id="loader-pct">0</em></div>
+  <div class="loader-line"><div class="loader-fill" id="lf"></div></div>
+  <div class="loader-label">Loading</div>
+</div>
+
+<!-- NAV -->
+<nav id="mainnav">
+  <a href="#" class="nav-logo">
+    <img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:44px;width:auto;" />
+  </a>
+  <div class="nav-links">
+    <a href="#video-scroll">The journey</a>
+    <a href="#event">The event</a>
+    <a href="#register">Register</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#register" class="nav-cta">Register now</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     VIDEO SCROLL SECTION
+     600vh container — video scrubs as you scroll through.
+     5 overlay panels reveal at different scroll positions.
+════════════════════════════════════════════════════ -->
+<div id="video-scroll">
+
+  <div id="video-sticky">
+
+    <!-- ── PANEL 0: Hero — "Be the first to believe" (0–20%) ── -->
+    <div class="vo-panel vo-center" id="vp0">
+      <div>
+        <div class="vo-eyebrow">Montreux · June 5, 2026 · HIM Business School</div>
+        <h1 class="vo-h">
+          <span class="clip-line"><span class="clip-inner">Be the first</span></span>
+          <span class="clip-line"><span class="clip-inner">to <em style="color:var(--red)">believe.</em></span></span>
+        </h1>
+        <p class="vo-sub">An event for national rowers Nico Chambers &amp; Seric Critchley — two athletes on the edge of something extraordinary.</p>
+        <div style="margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="#register" class="vo-btn">Register for the event</a>
+          <a href="#event" class="vo-btn-ghost">The event ↓</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PANEL 1: The journey — "Two athletes. One shared dream." (20–40%) ── -->
+    <div class="vo-panel vo-center" id="vp1">
+      <div>
+        <div class="vo-label">The journey begins</div>
+        <h2 class="vo-h">
+          <span class="clip-line"><span class="clip-inner">Two athletes.</span></span>
+          <span class="clip-line"><span class="clip-inner"><em>One shared dream.</em></span></span>
+        </h2>
+        <p class="vo-sub">From the rowing clubs of Switzerland to the world stage — dedicating their lives to the water.</p>
+      </div>
+    </div>
+
+    <!-- ── PANEL 2: Meet the athletes — photos over video (40–60%) ── -->
+    <div class="vo-panel vo-split" id="vp2">
+      <div class="vo-athletes">
+        <div class="vo-athlete">
+          <div class="vo-ath-photo">
+            <img src="uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg" alt="Nico" style="object-position:28% center;" />
+          </div>
+          <div class="vo-ath-name">Nico Chambers</div>
+          <div class="vo-ath-role">National Rower · Switzerland</div>
+          <div class="vo-ath-bio">Relentless discipline and tactical brilliance — on the water since 14.</div>
+        </div>
+        <div class="vo-athlete">
+          <div class="vo-ath-photo">
+            <img src="uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg" alt="Seric" style="object-position:72% center;" />
+          </div>
+          <div class="vo-ath-name">Seric Critchley</div>
+          <div class="vo-ath-role">National Rower · Switzerland</div>
+          <div class="vo-ath-bio">Raw power, elegant technique. A force in the boat.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PANEL 3: The challenge — photo + text (60–80%) ── -->
+    <div class="vo-panel vo-split" id="vp3">
+      <div class="vo-photo-wrap">
+        <img src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Championships" />
+        <div class="vo-photo-caption">U23 World Championships · Silver</div>
+      </div>
+      <div>
+        <div class="vo-label">The challenge</div>
+        <h2 class="vo-h" style="font-size:clamp(36px,5vw,72px);">
+          <span class="clip-line"><span class="clip-inner">The gap between</span></span>
+          <span class="clip-line"><span class="clip-inner"><em>potential</em></span></span>
+          <span class="clip-line"><span class="clip-inner">and podium</span></span>
+          <span class="clip-line"><span class="clip-inner">is <em>funding.</em></span></span>
+        </h2>
+        <p class="vo-body">World-class training, travel, and equipment demand world-class support. That's where you come in.</p>
+      </div>
+    </div>
+
+    <!-- ── PANEL 4: Your role — victory photo + CTA (80–100%) ── -->
+    <div class="vo-panel vo-split" id="vp4">
+      <div class="vo-photo-wrap">
+        <img src="uploads/85381341-916d-4801-830a-85ef8cbce04f.jpeg" alt="Victory" />
+        <div class="vo-photo-caption">The moment we're working toward</div>
+      </div>
+      <div>
+        <div class="vo-label">Your role</div>
+        <h2 class="vo-h" style="font-size:clamp(36px,5vw,72px);">
+          <span class="clip-line"><span class="clip-inner">Be the</span></span>
+          <span class="clip-line"><span class="clip-inner"><em>first to</em></span></span>
+          <span class="clip-line"><span class="clip-inner">believe.</span></span>
+        </h2>
+        <p class="vo-body">Join us in Montreux on June 5th. An evening of connection, inspiration, and action.</p>
+        <a href="#register" class="vo-btn">Register now →</a>
+      </div>
+    </div>
+
+    <!-- Progress dots -->
+    <div id="video-progress-dots">
+      <div class="vp-dot on"></div>
+      <div class="vp-dot"></div>
+      <div class="vp-dot"></div>
+      <div class="vp-dot"></div>
+      <div class="vp-dot"></div>
+    </div>
+
+    <!-- Scroll hint (fades out after first scroll) -->
+    <div id="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-rod"></div>
+    </div>
+
+  </div><!-- /video-sticky -->
+</div><!-- /video-scroll -->
+
+
+<!-- ════════════════════════════
+     BELOW THE VIDEO
+════════════════════════════ -->
+
+<!-- KINETIC QUOTE -->
+<section id="kquote">
+  <div class="kq-inner">
+    <span class="kq-line"><span class="kq-mask">An event where you can meet</span></span>
+    <span class="kq-line"><span class="kq-mask">two real athletes and follow their</span></span>
+    <span class="kq-line"><span class="kq-mask"><em>amazing journey</em> to the Olympics.</span></span>
+    <div class="kq-divider" id="kq-div"></div>
+    <p class="kq-sub" id="kq-sub">We are proud to bring together a community that supports ambition and a dream. This will be an event where you learn what it takes to be champions and what it is that is important to achieve your goals.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num"><em>U23</em></div><div class="stat-lbl">World Championships Silver</div></div>
+    <div class="stat-item"><div class="stat-num">2</div><div class="stat-lbl">National Rowers</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-lbl">Night to change everything</div></div>
+  </div>
+</section>
+
+<!-- EVENT DETAILS -->
+<section id="event">
+  <div class="event-wrap">
+    <div>
+      <span class="sec-eye">The event</span>
+      <h2 class="sec-h">An evening in<br><em style="color:var(--red)">Montreux.</em></h2>
+      <p class="sec-p">Join us at HIM Business School for an unforgettable evening.</p>
+      <ul class="details-list">
+        <li class="detail-row">
+          <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><div class="detail-lbl">Date</div><div class="detail-val">Friday, 5th June 2026</div></div>
+        </li>
+        <li class="detail-row">
+          <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="detail-lbl">Time</div><div class="detail-val">Doors open 17:30 · Close 20:30</div></div>
+        </li>
+        <li class="detail-row">
+          <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="detail-lbl">Location</div><div class="detail-val">HIM Business School, Montreux<br><span style="font-size:12px;color:rgba(255,255,255,0.3);">On the shores of Lake Geneva</span></div></div>
+        </li>
+        <li class="detail-row">
+          <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="detail-lbl">Attendance</div><div class="detail-val">Limited places — register to secure yours.</div></div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="venue-card">
+        <div class="vc-inner">
+          <div class="vc-badge"><div class="vc-dot"></div><span>Registration open</span></div>
+          <div class="vc-name">HIM Business School</div>
+          <div class="vc-addr">Montreux, Switzerland<br>On the shores of Lake Geneva</div>
+          <a href="https://maps.google.com/?q=HIM+Business+School+Montreux" target="_blank" class="vc-map"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> View on map</a>
+        </div>
+        <div class="vc-city">Montreux</div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-title">Evening programme</div>
+        <div class="prog-row"><span class="prog-time">17:30</span><span class="prog-item">Arrival &amp; welcome drinks</span></div>
+        <div class="prog-row"><span class="prog-time">18:00</span><span class="prog-item">Opening remarks &amp; Alps2LA presentation</span></div>
+        <div class="prog-row"><span class="prog-time">18:30</span><span class="prog-item">Nico &amp; Seric — their story in their words</span></div>
+        <div class="prog-row"><span class="prog-time">19:15</span><span class="prog-item">Dinner &amp; fundraising</span></div>
+        <div class="prog-row"><span class="prog-time">20:30</span><span class="prog-item">Networking &amp; close</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO BAND -->
+<div id="photoband">
+  <img class="pb-img" id="pb-img" src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Championships" />
+  <div class="pb-caption">
+    <div>
+      <div class="pb-label">U23 World Championships</div>
+      <div class="pb-title">Silver medallists — <em>Switzerland</em></div>
+    </div>
+    <a href="#register" class="vo-btn" style="flex-shrink:0;">Register now →</a>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<section id="register">
+  <div class="reg-wrap">
+    <span class="sec-eye" style="display:block;margin-bottom:12px;">Reserve your place</span>
+    <h2 class="sec-h" style="text-align:center;">Join us in<br><em>Montreux.</em></h2>
+    <p class="sec-p" style="text-align:center;max-width:480px;margin:0 auto 40px;">Spaces are limited. Register below and we'll confirm your place by email.</p>
+    <div class="form-card">
+      <div id="reg-form">
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">First name</label><input class="form-inp" type="text" placeholder="Nico" id="f-first" /></div>
+          <div class="form-group"><label class="form-lbl">Last name</label><input class="form-inp" type="text" placeholder="Chambers" id="f-last" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-lbl">Age</label><input class="form-inp" type="number" placeholder="25" id="f-age" min="1" max="120" /></div>
+          <div class="form-group"><label class="form-lbl">Gender</label><select class="form-sel" id="f-gender"><option value="">Select…</option><option value="male">Male</option><option value="female">Female</option><option value="undisclosed">Prefer not to say</option></select></div>
+        </div>
+        <div class="form-row"><div class="form-group full"><label class="form-lbl">Email address</label><input class="form-inp" type="email" placeholder="you@example.com" id="f-email" /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-lbl">Dietary restrictions / Allergies</label><input class="form-inp" type="text" placeholder="e.g. vegetarian, gluten-free, nut allergy — or leave blank" id="f-diet" /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-lbl">How did you hear about this?</label><select class="form-sel" id="f-source"><option value="">Select one…</option><option value="instagram">Alps2LA Instagram</option><option value="friend">Friend or colleague</option><option value="him">HIM Business School</option><option value="other">Other</option></select></div></div>
+        <div class="form-check"><input type="checkbox" id="f-ok" /><label for="f-ok">I agree to be contacted by Alps2LA about this event and future updates.</label></div>
+        <div id="form-err"></div>
+        <div class="form-cta"><button class="vo-btn" style="width:100%;text-align:center;display:block;border-radius:12px;font-size:15px;" onclick="submitForm()">Secure my place →</button></div>
+        <p style="margin-top:18px;text-align:center;font-family:var(--fs);font-size:12px;color:rgba(255,255,255,0.25);">Questions? <a href="mailto:info@alps2la.com" style="color:rgba(255,255,255,0.45);text-decoration:none;">info@alps2la.com</a></p>
+      </div>
+      <div class="form-success" id="form-ok">
+        <div class="suc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7070" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>You're registered.</h3>
+        <p>We'll confirm your place shortly.<br>See you in Montreux on June 5th.</p>
+        <a href="#" style="margin-top:8px;display:inline-block;font-family:var(--fs);font-size:14px;color:rgba(255,255,255,0.5);text-decoration:none;" onclick="event.preventDefault();shareEvt()">Share the event →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-wrap">
+    <div class="faq-hd">
+      <span class="sec-eye" style="display:block;margin-bottom:12px;">Questions</span>
+      <h2 class="sec-h">Everything you<br><em>need to know.</em></h2>
+    </div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Is there a ticket price or donation requirement?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">The event is free to attend. Donations on the night go directly toward training, travel, and competition costs.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Who are Nico Chambers and Seric Critchley?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">National-level rowers representing Switzerland — silver medallists at the U23 World Rowing Championships.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">What is Alps2LA's connection to the event?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Alps2LA bridges alpine culture with the Los Angeles spirit. This event is hosted by Alps2LA in partnership with HIM Business School.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Where is HIM Business School?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">In the heart of Montreux, on the shores of Lake Geneva. Transport info will be sent to registered guests.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Can I bring guests or colleagues?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Yes — indicate the number of guests when registering. Spaces are limited so register early.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Will there be food and drinks?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Welcome drinks on arrival and dinner are included. Dietary requirements can be noted at registration.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">How do I follow Nico and Seric's progress?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Follow @alps2la on Instagram, or the athletes directly: @nico._chambers and @seric_.critchley.</div></div></div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section id="social">
+  <div>
+    <div class="soc-h">Follow the journey</div>
+    <div class="soc-s">Behind-the-scenes training, race days, and the moments that matter</div>
+    <a href="https://www.instagram.com/alps2la?igsh=MXAyYzRzdjMyNTd3Yg==" target="_blank" class="ig-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@alps2la on Instagram</a>
+    <div class="soc-athlete-links">
+      <a href="https://www.instagram.com/nico._chambers?igsh=bWV1OWQxM2h4YzZ1" target="_blank" class="soc-alink">@nico._chambers</a>
+      <span class="soc-sep">·</span>
+      <a href="https://www.instagram.com/seric_.critchley?igsh=MTY3cDMzN2J4a3lhZg==" target="_blank" class="soc-alink">@seric_.critchley</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#"><img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:52px;width:auto;" /></a>
+  <div class="ft-meta">© 2026 Alps2LA · Fundraising event · Montreux, Switzerland</div>
+  <div class="ft-links"><a href="#register">Register</a><a href="#faq">FAQ</a><a href="mailto:info@alps2la.com">Contact</a></div>
+</footer>
+
+<!-- TWEAKS -->
+<div id="tweaks">
+  <div class="tw-title">Tweaks<span class="tw-x" onclick="closeTweaks()">×</span></div>
+  <div class="tw-group"><div class="tw-lbl">Accent color</div><div class="tw-opts"><button class="tw-btn on" onclick="setAccent('red',this)">Swiss Red</button><button class="tw-btn" onclick="setAccent('orange',this)">Canyon</button><button class="tw-btn" onclick="setAccent('blue',this)">Navy</button></div></div>
+</div>
+
+<!-- GSAP + Lenis — same stack as Organimo -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ─── LENIS — butter-smooth scroll ────────────────────────────────────────────
+const lenis = new Lenis({
+  duration: 1.4,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothWheel: true,
+  wheelMultiplier: 0.85,
+});
+gsap.ticker.add(time => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
+
+// ─── iOS VIDEO ACTIVATION ─────────────────────────────────────────────────────
+// iOS Safari won't allow currentTime scrubbing until the video has been
+// "activated" once. We play it for one frame then immediately pause.
+(function() {
+  const vid = document.getElementById('bg-video');
+  function activateVideo() {
+    vid.play().then(() => { vid.pause(); vid.currentTime = 0; }).catch(() => {});
+  }
+  if (vid.readyState >= 3) { activateVideo(); }
+  else { vid.addEventListener('canplay', activateVideo, { once: true }); }
+})();
+
+// ─── LOADER ───────────────────────────────────────────────────────────────────
+(function() {
+  const pctEl = document.getElementById('loader-pct');
+  const fill  = document.getElementById('lf');
+  let pct = 0;
+  const tick = setInterval(() => {
+    pct = Math.min(pct + Math.random() * 16, 99);
+    pctEl.textContent = Math.floor(pct);
+    fill.style.right = (100 - pct) + '%';
+  }, 80);
+
+  function revealPage() {
+    clearInterval(tick);
+    fill.style.right = '0%';
+    pctEl.textContent = 100;
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      loader.classList.add('hidden');
+      setTimeout(() => loader.style.display = 'none', 900);
+      // Animate panel 0 text in
+      animatePanelIn(document.getElementById('vp0'));
+    }, 350);
+  }
+
+  const video = document.getElementById('bg-video');
+  if (video.readyState >= 3) {
+    window.addEventListener('load', revealPage);
+  } else {
+    video.addEventListener('canplaythrough', revealPage, { once: true });
+    window.addEventListener('load', () => setTimeout(revealPage, 1800), { once: true });
+  }
+})();
+
+// ─── NAV + PROGRESS ──────────────────────────────────────────────────────────
+lenis.on('scroll', ({ scroll }) => {
+  document.getElementById('mainnav').classList.toggle('solid', scroll > 80);
+  const pct = scroll / (document.body.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+  // Hide scroll hint after first scroll
+  if (scroll > 50) document.getElementById('scroll-hint').style.opacity = '0';
+});
+
+// ─── SCROLL-SCRUBBED VIDEO ────────────────────────────────────────────────────
+// The core Organimo technique: map scroll progress → video.currentTime
+// Video is now a fixed background that scrubs across the WHOLE document scroll.
+const video   = document.getElementById('bg-video');
+const panels  = [
+  document.getElementById('vp0'),
+  document.getElementById('vp1'),
+  document.getElementById('vp2'),
+  document.getElementById('vp3'),
+  document.getElementById('vp4'),
+];
+const dots = document.querySelectorAll('.vp-dot');
+
+// Panel boundaries as fractions of total scroll (0–1)
+const PANEL_RANGES = [
+  [0,    0.22],  // Hero
+  [0.22, 0.42],  // Journey
+  [0.42, 0.62],  // Athletes
+  [0.62, 0.82],  // Challenge
+  [0.82, 1.0 ],  // Your role
+];
+
+let currentPanel = -1;
+
+function setActivePanel(idx) {
+  if (idx === currentPanel) return;
+  // Fade out old panel
+  if (currentPanel >= 0) {
+    gsap.to(panels[currentPanel], {
+      opacity: 0, duration: 0.45, ease: 'power2.inOut',
+      onComplete: () => panels[currentPanel].classList.remove('active')
+    });
+  }
+  currentPanel = idx;
+  // Fade in new panel
+  panels[idx].classList.add('active');
+  gsap.fromTo(panels[idx],
+    { opacity: 0 },
+    { opacity: 1, duration: 0.55, ease: 'power2.out',
+      onComplete: () => animatePanelIn(panels[idx])
+    }
+  );
+  // Update dots
+  dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+}
+
+function animatePanelIn(panel) {
+  // Clip-line text reveals
+  const inners = panel.querySelectorAll('.clip-inner');
+  if (inners.length) {
+    gsap.fromTo(inners,
+      { y: '105%' },
+      { y: '0%', duration: 0.75, stagger: 0.1, ease: 'power3.out' }
+    );
+  }
+  // Eyebrow / label
+  const eyebrow = panel.querySelector('.vo-eyebrow, .vo-label');
+  if (eyebrow) gsap.fromTo(eyebrow, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' });
+  // Sub text
+  const sub = panel.querySelector('.vo-sub, .vo-body');
+  if (sub) gsap.fromTo(sub, { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.3, ease: 'power3.out' });
+  // Buttons
+  const btns = panel.querySelectorAll('.vo-btn, .vo-btn-ghost');
+  if (btns.length) gsap.fromTo(btns, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.4, ease: 'power3.out' });
+  // Athlete cards
+  const athletes = panel.querySelectorAll('.vo-athlete');
+  if (athletes.length) gsap.fromTo(athletes, { y: 36, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15, duration: 0.6, delay: 0.1, ease: 'power3.out' });
+  // Photo
+  const photo = panel.querySelector('.vo-photo-wrap');
+  if (photo) gsap.fromTo(photo, { x: -32, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+}
+
+// ScrollTrigger 1: drives video scrub across the WHOLE document scroll
+ScrollTrigger.create({
+  trigger: document.documentElement,
+  start: 'top top',
+  end: 'bottom bottom',
+  scrub: 0.3,        // slight lag for cinematic feel
+  onUpdate(self) {
+    if (video.readyState >= 2 && video.duration) {
+      video.currentTime = self.progress * video.duration;
+    }
+  }
+});
+
+// ScrollTrigger 2: drives panel switching, scoped to the #video-scroll section
+ScrollTrigger.create({
+  trigger: '#video-scroll',
+  start: 'top top',
+  end: 'bottom bottom',
+  scrub: 0.3,
+  onUpdate(self) {
+    const p = self.progress;
+    for (let i = 0; i < PANEL_RANGES.length; i++) {
+      const [start, end] = PANEL_RANGES[i];
+      if (p >= start && p < end) {
+        setActivePanel(i);
+        break;
+      }
+    }
+    if (p >= 0.99) setActivePanel(PANEL_RANGES.length - 1);
+  }
+});
+
+// ─── KINETIC QUOTE ────────────────────────────────────────────────────────────
+const kqMasks = document.querySelectorAll('.kq-mask');
+gsap.set(kqMasks, { y: '110%' });
+gsap.set('#kq-div', { scaleX: 0 });
+gsap.set('#kq-sub', { y: 18, opacity: 0 });
+
+ScrollTrigger.create({
+  trigger: '#kquote', start: 'top 78%', once: true,
+  onEnter() {
+    const tl = gsap.timeline();
+    tl.to(kqMasks, { y: '0%', duration: 0.85, stagger: 0.18, ease: 'power3.out' });
+    tl.to('#kq-div', { scaleX: 1, duration: 0.7, ease: 'power3.out' }, '-=0.3');
+    tl.to('#kq-sub', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+  }
+});
+
+// ─── STATS ────────────────────────────────────────────────────────────────────
+gsap.utils.toArray('.stat-item').forEach((el, i) => {
+  gsap.fromTo(el, { y: 36, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.8, delay: i * 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '#stats', start: 'top 82%', once: true }
+    }
+  );
+});
+
+// ─── EVENT SECTION ───────────────────────────────────────────────────────────
+gsap.utils.toArray('#event .sec-eye, #event .sec-h, #event .sec-p, #event .detail-row, #event .venue-card, #event .prog-card').forEach((el, i) => {
+  gsap.fromTo(el, { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.7, delay: (i % 5) * 0.08, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    }
+  );
+});
+
+// ─── PHOTO BAND PARALLAX ─────────────────────────────────────────────────────
+gsap.to('#pb-img', {
+  yPercent: 18, ease: 'none',
+  scrollTrigger: { trigger: '#photoband', start: 'top bottom', end: 'bottom top', scrub: true }
+});
+gsap.fromTo('.pb-label, .pb-title', { y: 20, opacity: 0 },
+  { y: 0, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'power3.out',
+    scrollTrigger: { trigger: '#photoband', start: 'top 75%', once: true }
+  }
+);
+
+// ─── REGISTER / FAQ / SOCIAL ─────────────────────────────────────────────────
+gsap.utils.toArray('#register .sec-eye, #register .sec-h, #register .sec-p, #register .form-card, #faq .sec-eye, #faq .sec-h, #faq .faq-item, #social > div').forEach((el, i) => {
+  gsap.fromTo(el, { y: 28, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.7, delay: (i % 4) * 0.06, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    }
+  );
+});
+
+// ─── TWEAKS ───────────────────────────────────────────────────────────────────
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks').style.display = 'block';
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks').style.display = 'none';
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+function closeTweaks() { document.getElementById('tweaks').style.display = 'none'; }
+function setAccent(v, b) {
+  document.querySelectorAll('#tweaks .tw-btn').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  const m = { red: '#FF0000', orange: '#C4623A', blue: '#000080' };
+  document.documentElement.style.setProperty('--red', m[v]);
+}
+
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(x => x.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// ─── FORM ─────────────────────────────────────────────────────────────────────
+function submitForm() {
+  const first = document.getElementById('f-first').value.trim();
+  const last  = document.getElementById('f-last').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const ok    = document.getElementById('f-ok').checked;
+  const err   = document.getElementById('form-err');
+  if (!first || !last) { err.style.display='block'; err.textContent='Please enter your full name.'; return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.style.display='block'; err.textContent='Please enter a valid email.'; return; }
+  if (!ok) { err.style.display='block'; err.textContent='Please agree to be contacted.'; return; }
+  err.style.display = 'none';
+  document.getElementById('reg-form').style.display = 'none';
+  document.getElementById('form-ok').style.display  = 'flex';
+}
+function shareEvt() {
+  if (navigator.share) navigator.share({ title: 'Alps2LA', url: location.href });
+  else navigator.clipboard.writeText(location.href).then(() => alert('Link copied!'));
+}
+</script>
+</body>
+</html>
