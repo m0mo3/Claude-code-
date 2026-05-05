@@ -803,13 +803,35 @@ lenis.on('scroll', ScrollTrigger.update);
 // ─── iOS VIDEO ACTIVATION ─────────────────────────────────────────────────────
 // iOS Safari won't allow currentTime scrubbing until the video has been
 // "activated" once. We play it for one frame then immediately pause.
+// Also keeps the video alive — browsers (Safari especially) suspend idle
+// videos after inactivity, freezing scroll-scrubbing. We listen for suspend/
+// stall events and reactivate, plus run a low-cost heartbeat.
 (function() {
   const vid = document.getElementById('bg-video');
+  let reactivating = false;
   function activateVideo() {
-    vid.play().then(() => { vid.pause(); vid.currentTime = 0; }).catch(() => {});
+    if (reactivating) return;
+    reactivating = true;
+    vid.play().then(() => {
+      vid.pause();
+      reactivating = false;
+    }).catch(() => { reactivating = false; });
+  }
+  function reactivateIfStuck() {
+    if (vid.readyState < 2 || vid.paused === false) return;
+    activateVideo();
   }
   if (vid.readyState >= 3) { activateVideo(); }
   else { vid.addEventListener('canplay', activateVideo, { once: true }); }
+
+  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt => {
+    vid.addEventListener(evt, () => { setTimeout(activateVideo, 50); });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(activateVideo, 50);
+  });
+  // Expose for ScrollTrigger to call when readyState drops
+  window.__reactivateBgVideo = reactivateIfStuck;
 })();
 
 // ─── LOADER ───────────────────────────────────────────────────────────────────
@@ -945,6 +967,8 @@ ScrollTrigger.create({
   onUpdate(self) {
     if (video.readyState >= 2 && video.duration) {
       video.currentTime = self.progress * video.duration;
+    } else if (window.__reactivateBgVideo) {
+      window.__reactivateBgVideo();
     }
   }
 });
