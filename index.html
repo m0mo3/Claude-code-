@@ -290,6 +290,22 @@ nav.solid {
    SECTIONS BELOW THE VIDEO
 ════════════════════════════════ */
 
+/* ── ROWING QUOTE - standalone moment between panels and kquote ── */
+#rowing-quote {
+  min-height:80vh;
+  display:flex; align-items:center; justify-content:center;
+  background:#020214;
+  position:relative;
+  padding:80px 48px;
+}
+.rq-inner { max-width:1100px; text-align:center; }
+.rq-h {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(40px,7vw,110px); line-height:1.05;
+  letter-spacing:-0.025em; margin:0;
+}
+.rq-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.75); }
+
 /* ── KINETIC QUOTE - transparent so video shows through ── */
 #kquote {
   min-height:auto; display:flex; align-items:center; justify-content:center;
@@ -535,12 +551,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
             <polyline points="3,14 9,22 15,14" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div style="margin-top:80px;">
-          <h2 style="font-family:var(--fd);font-size:clamp(32px,5.5vw,80px);font-weight:400;color:#fff;line-height:1.05;letter-spacing:-0.02em;margin:0;text-align:center;">
-            <span class="clip-line"><span class="clip-inner">Continue rowing</span></span>
-            <span class="clip-line"><span class="clip-inner"><em style="font-family:Georgia,serif;font-style:italic;color:rgba(255,255,255,0.7);">to the dream.</em></span></span>
-          </h2>
-        </div>
       </div>
     </div>
 
@@ -623,6 +633,16 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- ════════════════════════════
      BELOW THE VIDEO
 ════════════════════════════ -->
+
+<!-- ROWING QUOTE - standalone scroll-triggered moment -->
+<section id="rowing-quote">
+  <div class="rq-inner">
+    <h2 class="rq-h">
+      <span class="clip-line"><span class="clip-inner rq-clip">Continue rowing</span></span>
+      <span class="clip-line"><span class="clip-inner rq-clip"><em>to the dream.</em></span></span>
+    </h2>
+  </div>
+</section>
 
 <!-- KINETIC QUOTE -->
 <section id="kquote">
@@ -1013,6 +1033,17 @@ ScrollTrigger.create({
       }
     }
     if (p >= 0.99) setActivePanel(PANEL_RANGES.length - 1);
+  }
+});
+
+// ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
+gsap.set('#rowing-quote .rq-clip', { y: '105%' });
+ScrollTrigger.create({
+  trigger: '#rowing-quote', start: 'top 78%', once: true,
+  onEnter() {
+    gsap.to('#rowing-quote .rq-clip', {
+      y: '0%', duration: 0.85, stagger: 0.15, ease: 'power3.out'
+    });
   }
 });
 
