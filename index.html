@@ -142,7 +142,7 @@ nav.solid {
 ════════════════════════════════════════════════ */
 #video-scroll {
   position:relative;
-  height:150vh;
+  height:100vh;
 }
 
 /* The sticky wrapper holds the panels fixed on screen
@@ -555,72 +555,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
       </div>
     </div>
 
-    <!-- ── PANEL 1: Meet the athletes ── -->
-    <div class="vo-panel vo-split" id="vp1">
-      <div class="vo-athletes">
-        <div class="vo-athlete">
-          <div class="vo-ath-photo">
-            <img src="uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg" alt="Nico" style="object-position:28% center;" />
-          </div>
-          <div class="vo-ath-name">Nico Chambers</div>
-          <div class="vo-ath-role">National Rower · Switzerland</div>
-          <div class="vo-ath-bio">Relentless discipline and tactical brilliance - on the water since 14.</div>
-        </div>
-        <div class="vo-athlete">
-          <div class="vo-ath-photo">
-            <img src="uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg" alt="Seric" style="object-position:72% center;" />
-          </div>
-          <div class="vo-ath-name">Seric Critchley</div>
-          <div class="vo-ath-role">National Rower · Switzerland</div>
-          <div class="vo-ath-bio">Raw power, elegant technique. A force in the boat.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── PANEL 2: The challenge ── -->
-    <div class="vo-panel vo-split" id="vp2">
-      <div class="vo-photo-wrap">
-        <img src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Championships" />
-        <div class="vo-photo-caption">U23 World Championships · Silver</div>
-      </div>
-      <div>
-        <div class="vo-label">The challenge</div>
-        <h2 class="vo-h" style="font-size:clamp(36px,5vw,72px);">
-          <span class="clip-line"><span class="clip-inner">The gap between</span></span>
-          <span class="clip-line"><span class="clip-inner"><em>potential</em></span></span>
-          <span class="clip-line"><span class="clip-inner">and podium</span></span>
-          <span class="clip-line"><span class="clip-inner">is <em>funding.</em></span></span>
-        </h2>
-        <p class="vo-body">World-class training, travel, and equipment demand world-class support. That's where you come in.</p>
-      </div>
-    </div>
-
-    <!-- ── PANEL 3: Your role ── -->
-    <div class="vo-panel vo-split" id="vp3">
-      <div class="vo-photo-wrap">
-        <img src="uploads/85381341-916d-4801-830a-85ef8cbce04f.jpeg" alt="Victory" />
-        <div class="vo-photo-caption">The moment we're working toward</div>
-      </div>
-      <div>
-        <div class="vo-label">Your role</div>
-        <h2 class="vo-h" style="font-size:clamp(36px,5vw,72px);">
-          <span class="clip-line"><span class="clip-inner">Be the</span></span>
-          <span class="clip-line"><span class="clip-inner"><em>first to</em></span></span>
-          <span class="clip-line"><span class="clip-inner">believe.</span></span>
-        </h2>
-        <p class="vo-body">Join us in Montreux on June 5th. An evening of connection, inspiration, and action.</p>
-        <a href="#register" class="vo-btn">Register now →</a>
-      </div>
-    </div>
-
-    <!-- Progress dots -->
-    <div id="video-progress-dots">
-      <div class="vp-dot on"></div>
-      <div class="vp-dot"></div>
-      <div class="vp-dot"></div>
-      <div class="vp-dot"></div>
-    </div>
-
     <!-- Scroll hint (fades out after first scroll) -->
     <div id="scroll-hint">
       <span>Scroll</span>
@@ -923,18 +857,12 @@ lenis.on('scroll', ({ scroll }) => {
 const video   = document.getElementById('bg-video');
 const panels  = [
   document.getElementById('vp0'),
-  document.getElementById('vp1'),
-  document.getElementById('vp2'),
-  document.getElementById('vp3'),
 ];
 const dots = document.querySelectorAll('.vp-dot');
 
 // Panel boundaries as fractions of total scroll (0–1)
 const PANEL_RANGES = [
-  [0,    0.22],  // Hero
-  [0.22, 0.48],  // Athletes
-  [0.48, 0.74],  // Challenge
-  [0.74, 1.0 ],  // Your role
+  [0, 1.0],  // Hero
 ];
 
 let currentPanel = -1;
