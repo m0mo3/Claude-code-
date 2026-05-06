@@ -925,6 +925,12 @@ const PANEL_RANGES = [
 
 let currentPanel = -1;
 
+// Pre-hide all clip-inners on every panel except panel 0 so they animate in cleanly
+panels.forEach((p, i) => {
+  if (i === 0) return;
+  gsap.set(p.querySelectorAll('.clip-inner'), { y: '105%' });
+});
+
 function setActivePanel(idx) {
   if (idx === currentPanel) return;
   currentPanel = idx;
