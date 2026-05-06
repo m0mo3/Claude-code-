@@ -798,6 +798,10 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 
 <script>
+// Always start at top on load/refresh
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── LENIS - butter-smooth scroll ────────────────────────────────────────────
@@ -1059,11 +1063,18 @@ gsap.fromTo('.pb-label, .pb-title', { y: 20, opacity: 0 },
     scrollTrigger: { trigger: '#photoband', start: 'top 75%', once: true }
   }
 );
-gsap.set('#pb-rowing-text', { opacity: 0, y: 28 });
-ScrollTrigger.create({
-  trigger: '#photoband', start: 'top 65%', once: true,
-  onEnter: () => gsap.to('#pb-rowing-text', { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' })
-});
+// Use IntersectionObserver for the rowing text — more reliable than ScrollTrigger for this
+(function() {
+  const el = document.getElementById('pb-rowing-text');
+  gsap.set(el, { opacity: 0, y: 28 });
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' });
+      obs.disconnect();
+    }
+  }, { threshold: 0.3 });
+  obs.observe(document.getElementById('photoband'));
+})();
 
 // ─── REGISTER / FAQ / SOCIAL ─────────────────────────────────────────────────
 gsap.utils.toArray('#register .sec-eye, #register .sec-h, #register .sec-p, #register .form-card, #faq .sec-eye, #faq .sec-h, #faq .faq-item, #social > div').forEach((el, i) => {
