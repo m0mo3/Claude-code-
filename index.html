@@ -535,20 +535,16 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
             <polyline points="3,14 9,22 15,14" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
+        <div style="margin-top:80px;">
+          <h2 style="font-family:var(--fd);font-size:clamp(32px,5.5vw,80px);font-weight:400;color:#fff;line-height:1.05;letter-spacing:-0.02em;margin:0;text-align:center;">
+            <span class="clip-line"><span class="clip-inner">Continue rowing</span></span>
+            <span class="clip-line"><span class="clip-inner"><em style="font-family:Georgia,serif;font-style:italic;color:rgba(255,255,255,0.7);">to the dream.</em></span></span>
+          </h2>
+        </div>
       </div>
     </div>
 
-    <!-- ── PANEL 1: Transitional quote ── -->
-    <div class="vo-panel vo-center" id="vp1">
-      <div style="text-align:center;">
-        <h2 class="vo-h" style="font-size:clamp(38px,6.5vw,96px);line-height:1.05;">
-          <span class="clip-line"><span class="clip-inner">Continue rowing</span></span>
-          <span class="clip-line"><span class="clip-inner"><em style="font-family:Georgia,serif;font-style:italic;color:#fff;">to the dream.</em></span></span>
-        </h2>
-      </div>
-    </div>
-
-    <!-- ── PANEL 2: Meet the athletes - photos over video (40–60%) ── -->
+    <!-- ── PANEL 1: Meet the athletes - photos over video (40–60%) ── -->
     <div class="vo-panel vo-split" id="vp2">
       <div class="vo-athletes">
         <div class="vo-athlete">
@@ -609,7 +605,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
     <!-- Progress dots -->
     <div id="video-progress-dots">
       <div class="vp-dot on"></div>
-      <div class="vp-dot"></div>
       <div class="vp-dot"></div>
       <div class="vp-dot"></div>
       <div class="vp-dot"></div>
@@ -910,17 +905,15 @@ const panels  = [
   document.getElementById('vp1'),
   document.getElementById('vp2'),
   document.getElementById('vp3'),
-  document.getElementById('vp4'),
 ];
 const dots = document.querySelectorAll('.vp-dot');
 
 // Panel boundaries as fractions of total scroll (0–1)
 const PANEL_RANGES = [
-  [0,    0.18],  // Hero
-  [0.18, 0.36],  // Continue rowing to the dream
-  [0.36, 0.58],  // Athletes
-  [0.58, 0.78],  // Challenge
-  [0.78, 1.0 ],  // Your role
+  [0,    0.22],  // Hero
+  [0.22, 0.48],  // Athletes
+  [0.48, 0.74],  // Challenge
+  [0.74, 1.0 ],  // Your role
 ];
 
 let currentPanel = -1;
