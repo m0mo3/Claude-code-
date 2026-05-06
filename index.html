@@ -292,11 +292,11 @@ nav.solid {
 
 /* ── ROWING QUOTE - transparent, sits over video between panels and kquote ── */
 #rowing-quote {
-  min-height:90vh;
+  min-height:160vh;
   display:flex; align-items:center; justify-content:center;
   background:transparent;
   position:relative;
-  padding:80px 48px;
+  padding:240px 48px;
 }
 .rq-inner { max-width:1100px; text-align:center; }
 .rq-h {
@@ -967,14 +967,20 @@ ScrollTrigger.create({
 
 // ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
 gsap.set('#rowing-quote .rq-clip', { y: '105%' });
+gsap.set('#rowing-quote .rq-inner', { opacity: 0, y: 40 });
 ScrollTrigger.create({
-  trigger: '#rowing-quote', start: 'top 78%', once: true,
+  trigger: '#rowing-quote', start: 'top 80%', once: true,
   onEnter() {
-    gsap.to('#rowing-quote .rq-clip', {
-      y: '0%', duration: 0.9, stagger: 0.15, ease: 'power3.out'
-    });
+    const tl = gsap.timeline();
+    tl.to('#rowing-quote .rq-inner', {
+      opacity: 1, y: 0, duration: 1.0, ease: 'power3.out'
+    })
+    .to('#rowing-quote .rq-clip', {
+      y: '0%', duration: 1.0, stagger: 0.18, ease: 'power3.out'
+    }, '-=0.7');
   }
 });
+
 
 // ─── KINETIC QUOTE ────────────────────────────────────────────────────────────
 const kqMasks = document.querySelectorAll('.kq-mask');
