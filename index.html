@@ -359,7 +359,7 @@ nav.solid {
 /* ── PHOTO BAND ── */
 #photoband { width:100%; height:420px; position:relative; overflow:hidden; }
 .pb-img { width:100%; height:130%; object-fit:cover; object-position:center 20%; filter:brightness(0.5) saturate(0.8); will-change:transform; }
-.pb-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(2,2,20,1) 0%, rgba(2,2,20,0.55) 55%, transparent 100%); padding:52px 48px 32px; display:flex; align-items:flex-end; justify-content:space-between; }
+.pb-caption { position:absolute; bottom:0; left:0; right:0; background:#020214; padding:32px 48px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.08); }
 .pb-label { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:6px; }
 .pb-title { font-family:var(--fd); font-size:clamp(22px,3vw,38px); color:#fff; }
 .pb-title em { color:var(--orange-light); font-style:italic; }
@@ -702,8 +702,8 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- PHOTO BAND -->
 <div id="photoband">
   <img class="pb-img" id="pb-img" src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Championships" />
-  <div id="pb-rowing-text" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2;pointer-events:none;opacity:0;transform:translateY(24px);">
-    <p style="font-family:var(--fd);font-size:clamp(26px,4.5vw,62px);color:#fff;text-align:center;letter-spacing:-0.02em;line-height:1.2;text-shadow:0 2px 24px rgba(0,0,0,0.7);padding:0 24px;margin:0;">Continue rowing to the dream</p>
+  <div id="pb-rowing-text" style="position:absolute;top:0;left:0;right:0;height:60%;display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none;opacity:0;transform:translateY(24px);">
+    <p style="font-family:var(--fd);font-size:clamp(28px,4.8vw,62px);color:#fff;text-align:center;letter-spacing:-0.02em;line-height:1.2;text-shadow:0 4px 32px rgba(0,0,0,0.9), 0 0 80px rgba(0,0,0,0.6);padding:0 24px;margin:0;font-weight:400;">Continue rowing<br><em style="font-family:Georgia,serif;font-style:italic;color:#fff;">to the dream</em></p>
   </div>
   <div class="pb-caption">
     <div>
