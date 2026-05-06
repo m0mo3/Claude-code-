@@ -548,18 +548,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
       </div>
     </div>
 
-    <!-- ── PANEL 2: The journey - "Two athletes. One shared dream." ── -->
-    <div class="vo-panel vo-center" id="vp1">
-      <div>
-        <div class="vo-label">The journey begins</div>
-        <h2 class="vo-h">
-          <span class="clip-line"><span class="clip-inner">Two athletes.</span></span>
-          <span class="clip-line"><span class="clip-inner"><em>One shared dream.</em></span></span>
-        </h2>
-        <p class="vo-sub">From the rowing clubs of Switzerland to the world stage - dedicating their lives to the water.</p>
-      </div>
-    </div>
-
     <!-- ── PANEL 2: Meet the athletes - photos over video (40–60%) ── -->
     <div class="vo-panel vo-split" id="vp2">
       <div class="vo-athletes">
@@ -621,7 +609,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
     <!-- Progress dots -->
     <div id="video-progress-dots">
       <div class="vp-dot on"></div>
-      <div class="vp-dot"></div>
       <div class="vp-dot"></div>
       <div class="vp-dot"></div>
       <div class="vp-dot"></div>
@@ -929,12 +916,11 @@ const dots = document.querySelectorAll('.vp-dot');
 
 // Panel boundaries as fractions of total scroll (0–1)
 const PANEL_RANGES = [
-  [0,    0.15],  // Hero
-  [0.15, 0.30],  // Continue rowing to the dream
-  [0.30, 0.48],  // Journey
-  [0.48, 0.66],  // Athletes
-  [0.66, 0.82],  // Challenge
-  [0.82, 1.0 ],  // Your role
+  [0,    0.18],  // Hero
+  [0.18, 0.36],  // Continue rowing to the dream
+  [0.36, 0.58],  // Athletes
+  [0.58, 0.78],  // Challenge
+  [0.78, 1.0 ],  // Your role
 ];
 
 let currentPanel = -1;
