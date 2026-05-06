@@ -538,7 +538,17 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
       </div>
     </div>
 
-    <!-- ── PANEL 1: The journey - "Two athletes. One shared dream." (20–40%) ── -->
+    <!-- ── PANEL 1: Transitional quote ── -->
+    <div class="vo-panel vo-center" id="vp1">
+      <div style="text-align:center;">
+        <h2 class="vo-h" style="font-size:clamp(38px,6.5vw,96px);line-height:1.05;">
+          <span class="clip-line"><span class="clip-inner">Continue rowing</span></span>
+          <span class="clip-line"><span class="clip-inner"><em style="font-family:Georgia,serif;font-style:italic;color:#fff;">to the dream.</em></span></span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- ── PANEL 2: The journey - "Two athletes. One shared dream." ── -->
     <div class="vo-panel vo-center" id="vp1">
       <div>
         <div class="vo-label">The journey begins</div>
@@ -605,17 +615,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
         </h2>
         <p class="vo-body">Join us in Montreux on June 5th. An evening of connection, inspiration, and action.</p>
         <a href="#register" class="vo-btn">Register now →</a>
-      </div>
-    </div>
-
-    <!-- ── PANEL 5: Transitional quote ── -->
-    <div class="vo-panel vo-center" id="vp5">
-      <div style="text-align:center;">
-        <p style="font-family:var(--fs);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin:0 0 28px;">The journey continues</p>
-        <h2 class="vo-h" style="font-size:clamp(38px,6vw,88px);line-height:1.05;">
-          <span class="clip-line"><span class="clip-inner">Continue rowing</span></span>
-          <span class="clip-line"><span class="clip-inner"><em style="font-family:Georgia,serif;font-style:italic;color:#fff;">to the dream.</em></span></span>
-        </h2>
       </div>
     </div>
 
@@ -930,12 +929,12 @@ const dots = document.querySelectorAll('.vp-dot');
 
 // Panel boundaries as fractions of total scroll (0–1)
 const PANEL_RANGES = [
-  [0,    0.18],  // Hero
-  [0.18, 0.36],  // Journey
-  [0.36, 0.54],  // Athletes
-  [0.54, 0.72],  // Challenge
-  [0.72, 0.88],  // Your role
-  [0.88, 1.0 ],  // Continue rowing to the dream
+  [0,    0.15],  // Hero
+  [0.15, 0.30],  // Continue rowing to the dream
+  [0.30, 0.48],  // Journey
+  [0.48, 0.66],  // Athletes
+  [0.66, 0.82],  // Challenge
+  [0.82, 1.0 ],  // Your role
 ];
 
 let currentPanel = -1;
