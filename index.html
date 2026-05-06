@@ -932,38 +932,30 @@ function animatePanelIn(panel) {
 }
 
 // ScrollTrigger 1: drives video scrub across the WHOLE document scroll
+// Only seek the video when currentTime has shifted by a meaningful amount —
+// avoids dozens of redundant micro-seeks per second that cause visible stutter.
+let lastSeek = -1;
+const SEEK_EPS = 1 / 30; // ~33ms / one frame at 30fps
 ScrollTrigger.create({
   trigger: document.documentElement,
   start: 'top top',
   end: 'bottom bottom',
-  scrub: 0.3,        // slight lag for cinematic feel
+  scrub: 0.3,
   onUpdate(self) {
     if (video.readyState >= 2 && video.duration) {
-      video.currentTime = self.progress * video.duration;
+      const target = self.progress * video.duration;
+      if (Math.abs(target - lastSeek) >= SEEK_EPS) {
+        video.currentTime = target;
+        lastSeek = target;
+      }
     } else if (window.__reactivateBgVideo) {
       window.__reactivateBgVideo();
     }
   }
 });
 
-// ScrollTrigger 2: drives panel switching, scoped to the #video-scroll section
-ScrollTrigger.create({
-  trigger: '#video-scroll',
-  start: 'top top',
-  end: 'bottom bottom',
-  scrub: 0.3,
-  onUpdate(self) {
-    const p = self.progress;
-    for (let i = 0; i < PANEL_RANGES.length; i++) {
-      const [start, end] = PANEL_RANGES[i];
-      if (p >= start && p < end) {
-        setActivePanel(i);
-        break;
-      }
-    }
-    if (p >= 0.99) setActivePanel(PANEL_RANGES.length - 1);
-  }
-});
+// Hero panel is the only panel — activate it once at load.
+setActivePanel(0);
 
 // ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
 gsap.set('#rowing-quote .rq-clip', { y: '105%' });
