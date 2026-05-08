@@ -290,30 +290,6 @@ nav.solid {
    SECTIONS BELOW THE VIDEO
 ════════════════════════════════ */
 
-/* ── ROWERS PHOTO - sticky-pinned, fades in, whole image visible ── */
-#rowers-photo {
-  height: 265vh;
-  position: relative;
-  background: transparent;
-}
-.rp-sticky {
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 40px;
-}
-.rp-img {
-  max-height: 80vh;
-  width: auto;
-  max-width: 100%;
-  display: block;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 60px rgba(0,0,0,0.5);
-}
 
 /* ── KINETIC QUOTE - transparent so video shows through ── */
 #kquote {
@@ -576,13 +552,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- ════════════════════════════
      BELOW THE VIDEO
 ════════════════════════════ -->
-
-<!-- ROWERS PHOTO - sticky-pinned championship image -->
-<section id="rowers-photo">
-  <div class="rp-sticky">
-    <img class="rp-img" src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Nico &amp; Seric · U23 World Championships · Silver" />
-  </div>
-</section>
 
 <!-- KINETIC QUOTE -->
 <section id="kquote">
@@ -960,17 +929,6 @@ ScrollTrigger.create({
 setActivePanel(0);
 
 // ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
-// ─── ROWERS PHOTO fade-in (opacity only — no movement) ───────────────────────
-gsap.set('.rp-img', { opacity: 0 });
-ScrollTrigger.create({
-  trigger: '#rowers-photo',
-  start: 'top 60%',
-  end:   'bottom 40%',
-  onEnter:     () => gsap.to('.rp-img', { opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: true }),
-  onEnterBack: () => gsap.to('.rp-img', { opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: true }),
-  onLeave:     () => gsap.to('.rp-img', { opacity: 0, duration: 0.6, ease: 'power2.in',  overwrite: true }),
-  onLeaveBack: () => gsap.to('.rp-img', { opacity: 0, duration: 0.6, ease: 'power2.in',  overwrite: true }),
-});
 
 
 // ─── KINETIC QUOTE ────────────────────────────────────────────────────────────
