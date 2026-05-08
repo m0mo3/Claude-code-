@@ -31,17 +31,19 @@
 html { overflow-x:hidden; background:var(--ink); }
 body { background:transparent; color:var(--white); font-family:var(--fs); overflow-x:hidden; position:relative; }
 
-/* ── GLOBAL FIXED VIDEO BACKGROUND ── */
-#bg-video {
-  position:fixed; inset:0; width:100vw; height:100vh;
-  object-fit:cover; z-index:-2; pointer-events:none;
+/* ── GLOBAL FIXED IMAGE BACKGROUND ── */
+#bg-image {
+  position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background-image:url('uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg');
+  background-size:cover; background-position:center 30%;
+  background-repeat:no-repeat;
 }
 #bg-overlay {
   position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:linear-gradient(to bottom,
-    rgba(2,2,20,0.55) 0%,
-    rgba(2,2,20,0.45) 40%,
-    rgba(2,2,20,0.65) 100%);
+    rgba(2,2,20,0.72) 0%,
+    rgba(2,2,20,0.60) 40%,
+    rgba(2,2,20,0.80) 100%);
 }
 #bg-scanlines {
   position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -167,8 +169,8 @@ footer {
 </head>
 <body>
 
-<!-- BACKGROUND VIDEO + OVERLAYS -->
-<video id="bg-video" src="rowing.mp4" muted playsinline webkit-playsinline preload="auto" autoplay loop></video>
+<!-- BACKGROUND IMAGE + OVERLAYS -->
+<div id="bg-image"></div>
 <div id="bg-overlay"></div>
 <div id="bg-scanlines"></div>
 
@@ -272,24 +274,6 @@ gsap.utils.toArray('.ab-section').forEach((section) => {
   );
 });
 
-// ─── iOS VIDEO ACTIVATION + KEEP-ALIVE ──────────────────────────────────────
-(function() {
-  const vid = document.getElementById('bg-video');
-  let reactivating = false;
-  function activateVideo() {
-    if (reactivating) return;
-    reactivating = true;
-    vid.play().catch(() => {}).finally(() => { reactivating = false; });
-  }
-  if (vid.readyState >= 3) { activateVideo(); }
-  else { vid.addEventListener('canplay', activateVideo, { once: true }); }
-  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt => {
-    vid.addEventListener(evt, () => { setTimeout(activateVideo, 50); });
-  });
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) setTimeout(activateVideo, 50);
-  });
-})();
 </script>
 </body>
 </html>
