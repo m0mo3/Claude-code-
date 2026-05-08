@@ -290,6 +290,22 @@ nav.solid {
    SECTIONS BELOW THE VIDEO
 ════════════════════════════════ */
 
+/* ── ROWING QUOTE - transparent, sits over video between hero and kquote ── */
+#rowing-quote {
+  min-height:265vh;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent;
+  position:relative;
+  padding:48px 48px;
+}
+.rq-inner { max-width:1100px; text-align:center; }
+.rq-h {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(40px,7vw,110px); line-height:1.05;
+  letter-spacing:-0.025em; margin:0;
+  text-shadow:0 2px 32px rgba(0,0,0,0.55);
+}
+.rq-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.78); }
 
 /* ── KINETIC QUOTE - transparent so video shows through ── */
 #kquote {
@@ -552,6 +568,16 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- ════════════════════════════
      BELOW THE VIDEO
 ════════════════════════════ -->
+
+<!-- ROWING QUOTE - transparent, sits over the video background -->
+<section id="rowing-quote">
+  <div class="rq-inner">
+    <h2 class="rq-h">
+      <span class="clip-line"><span class="clip-inner rq-clip">Continue rowing</span></span>
+      <span class="clip-line"><span class="clip-inner rq-clip"><em>to the dream.</em></span></span>
+    </h2>
+  </div>
+</section>
 
 <!-- KINETIC QUOTE -->
 <section id="kquote">
@@ -929,7 +955,25 @@ ScrollTrigger.create({
 setActivePanel(0);
 
 // ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
+gsap.set('#rowing-quote .rq-clip', { y: '105%' });
+gsap.set('#rowing-quote .rq-inner', { opacity: 0, y: 40 });
+const rqTl = gsap.timeline({ paused: true });
+rqTl.to('#rowing-quote .rq-inner', {
+    opacity: 1, y: 0, duration: 1.0, ease: 'power3.out'
+  })
+  .to('#rowing-quote .rq-clip', {
+    y: '0%', duration: 1.0, stagger: 0.2, ease: 'power3.out'
+  }, '-=0.7');
 
+ScrollTrigger.create({
+  trigger: '#rowing-quote .rq-h',
+  start: 'top 85%',
+  end:   'bottom 15%',
+  onEnter:     () => rqTl.restart(),
+  onEnterBack: () => rqTl.restart(),
+  onLeave:     () => rqTl.progress(0).pause(),
+  onLeaveBack: () => rqTl.progress(0).pause(),
+});
 
 // ─── KINETIC QUOTE ────────────────────────────────────────────────────────────
 const kqMasks = document.querySelectorAll('.kq-mask');
