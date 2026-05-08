@@ -655,9 +655,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- PHOTO BAND -->
 <div id="photoband">
   <img class="pb-img" id="pb-img" src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Championships" />
-  <div id="pb-rowing-text" style="position:absolute;top:0;left:0;right:0;height:60%;display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none;">
-    <p style="font-family:var(--fd);font-size:clamp(28px,4.8vw,62px);color:#fff;text-align:center;letter-spacing:-0.02em;line-height:1.2;text-shadow:0 4px 32px rgba(0,0,0,0.9), 0 0 80px rgba(0,0,0,0.6);padding:0 24px;margin:0;font-weight:400;">Continue rowing<br><em style="font-family:Georgia,serif;font-style:italic;color:#fff;">to the dream</em></p>
-  </div>
   <div class="pb-caption">
     <div>
       <div class="pb-label">U23 World Championships</div>
@@ -1023,19 +1020,7 @@ gsap.fromTo('.pb-label, .pb-title', { y: 20, opacity: 0 },
     scrollTrigger: { trigger: '#photoband', start: 'top 75%', end: 'bottom 15%', toggleActions: 'play reset play reset' }
   }
 );
-// Use IntersectionObserver for the rowing text — replays every time it enters view
-(function() {
-  const el = document.getElementById('pb-rowing-text');
-  gsap.set(el, { opacity: 0, y: 28 });
-  const obs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', overwrite: true });
-    } else {
-      gsap.set(el, { opacity: 0, y: 28 });
-    }
-  }, { threshold: 0.3 });
-  obs.observe(document.getElementById('photoband'));
-})();
+
 
 // ─── REGISTER / FAQ / SOCIAL ─────────────────────────────────────────────────
 gsap.utils.toArray('#register .sec-eye, #register .sec-h, #register .sec-p, #register .form-card, #faq .sec-eye, #faq .sec-h, #faq .faq-item, #social > div').forEach((el, i) => {
