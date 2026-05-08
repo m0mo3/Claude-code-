@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020214">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="About Alps2LA - the story behind the fundraising evening for national rowers Nico Chambers & Seric Critchley.">
+<title>About · Alps2LA - Be the First to Believe</title>
+<style>
+@font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-300-normal.woff2') format('woff2'); font-weight:300; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-400-normal.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); font-weight:500; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-600-normal.woff2') format('woff2'); font-weight:600; font-display:swap; }
+@font-face { font-family:'Space Grotesk'; src:url('fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --navy:#000080;
+  --red:#FF0000;
+  --white:#FFFFFF;
+  --ink:#020214;
+  --fd:'DM Serif Display',Georgia,serif;
+  --fs:'Space Grotesk','Helvetica Neue',sans-serif;
+}
+
+html { overflow-x:hidden; background:var(--ink); }
+body { background:transparent; color:var(--white); font-family:var(--fs); overflow-x:hidden; position:relative; }
+
+/* ── GLOBAL FIXED VIDEO BACKGROUND ── */
+#bg-video {
+  position:fixed; inset:0; width:100vw; height:100vh;
+  object-fit:cover; z-index:-2; pointer-events:none;
+}
+#bg-overlay {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(2,2,20,0.55) 0%,
+    rgba(2,2,20,0.45) 40%,
+    rgba(2,2,20,0.65) 100%);
+}
+#bg-scanlines {
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:0.025;
+  background:repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px
+  );
+}
+::-webkit-scrollbar { width:2px; }
+::-webkit-scrollbar-track { background:var(--ink); }
+::-webkit-scrollbar-thumb { background:var(--navy); border-radius:9999px; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px; height:64px;
+  transition:background 500ms ease, border-color 500ms ease;
+  border-bottom:1px solid transparent;
+  background:rgba(2,2,20,0.95);
+  backdrop-filter:blur(24px) saturate(1.5);
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);
+  border-bottom-color:rgba(0,0,128,0.2);
+}
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
+.nav-logo img { transition:transform 300ms ease; }
+.nav-logo:hover img { transform:scale(1.05); }
+.nav-links { display:flex; gap:28px; }
+.nav-links a {
+  font-family:var(--fs); font-size:13px; font-weight:500;
+  color:rgba(255,255,255,0.5); text-decoration:none; letter-spacing:0.02em;
+  transition:color 200ms; position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-2px; left:0; right:0; height:1px;
+  background:var(--red); transform:scaleX(0); transform-origin:right;
+  transition:transform 300ms ease;
+}
+.nav-links a:hover { color:#fff; }
+.nav-links a:hover::after { transform:scaleX(1); transform-origin:left; }
+.nav-links a.active { color:#fff; }
+.nav-links a.active::after { transform:scaleX(1); transform-origin:left; }
+.nav-cta {
+  font-family:var(--fs); font-size:13px; font-weight:700;
+  background:var(--red); color:#fff; border:none; border-radius:9999px;
+  padding:10px 22px; cursor:pointer; letter-spacing:0.02em;
+  text-decoration:none; display:inline-block;
+  box-shadow:0 2px 16px rgba(255,0,0,0.3);
+  transition:transform 150ms, box-shadow 200ms;
+}
+.nav-cta:hover { transform:translateY(-1px); box-shadow:0 4px 22px rgba(255,0,0,0.45); }
+
+/* ── ABOUT HERO ── */
+.ab-hero {
+  min-height:80vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:140px 48px 80px; text-align:center;
+  position:relative;
+}
+.ab-eyebrow {
+  font-family:var(--fs); font-size:11px; font-weight:700;
+  letter-spacing:0.28em; text-transform:uppercase;
+  color:rgba(255,255,255,0.5); margin-bottom:20px;
+}
+.ab-h1 {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(48px,8vw,128px); line-height:1.02;
+  letter-spacing:-0.03em; margin:0;
+}
+.ab-h1 em { font-family:Georgia,serif; font-style:italic; color:var(--red); }
+.ab-sub {
+  margin-top:28px; max-width:640px; margin-left:auto; margin-right:auto;
+  font-family:var(--fs); font-size:16px; font-weight:300;
+  color:rgba(255,255,255,0.65); line-height:1.7;
+}
+
+/* ── ABOUT SECTIONS ── */
+.ab-wrap { max-width:980px; margin:0 auto; padding:0 48px; }
+.ab-section {
+  padding:90px 0;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.ab-section:first-of-type { border-top:none; }
+.ab-section-eye {
+  font-family:var(--fs); font-size:11px; font-weight:700;
+  letter-spacing:0.24em; text-transform:uppercase;
+  color:rgba(255,255,255,0.4); margin-bottom:18px;
+}
+.ab-section-h {
+  font-family:var(--fd); font-weight:400; color:#fff;
+  font-size:clamp(32px,5vw,64px); line-height:1.1;
+  letter-spacing:-0.02em; margin:0 0 24px;
+}
+.ab-section-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.75); }
+.ab-section-p {
+  font-family:var(--fs); font-size:16px; font-weight:300;
+  color:rgba(255,255,255,0.7); line-height:1.85; max-width:680px;
+}
+.ab-section-p + .ab-section-p { margin-top:18px; }
+
+/* ── FOOTER ── */
+footer {
+  background:rgba(1,1,15,0.85); padding:40px 48px;
+  border-top:1px solid rgba(255,255,255,0.05);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:20px; position:relative;
+}
+.ft-meta { font-family:var(--fs); font-size:12px; color:rgba(255,255,255,0.2); }
+.ft-links { display:flex; gap:22px; }
+.ft-links a { font-family:var(--fs); font-size:12px; color:rgba(255,255,255,0.24); text-decoration:none; transition:color 150ms; }
+.ft-links a:hover { color:rgba(255,255,255,0.6); }
+
+@media (max-width:780px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .ab-hero { padding:120px 22px 60px; }
+  .ab-wrap { padding:0 22px; }
+  .ab-section { padding:64px 0; }
+  footer { padding:32px 22px; flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND VIDEO + OVERLAYS -->
+<video id="bg-video" src="rowing.mp4" muted playsinline webkit-playsinline preload="auto" autoplay loop></video>
+<div id="bg-overlay"></div>
+<div id="bg-scanlines"></div>
+
+<!-- NAV -->
+<nav id="mainnav">
+  <a href="index.html" class="nav-logo">
+    <img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:44px;width:auto;" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html#video-scroll">The journey</a>
+    <a href="index.html#event">The event</a>
+    <a href="index.html#register">Register</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="about.html" class="active">About us</a>
+  </div>
+  <a href="index.html#register" class="nav-cta">Register now</a>
+</nav>
+
+<!-- HERO -->
+<section class="ab-hero">
+  <div>
+    <div class="ab-eyebrow">About Alps2LA</div>
+    <h1 class="ab-h1">Behind the<br><em>dream.</em></h1>
+    <p class="ab-sub">A short introduction to who we are, why this event exists, and the journey we're inviting you to be part of.</p>
+  </div>
+</section>
+
+<!-- CONTENT SECTIONS -->
+<div class="ab-wrap">
+
+  <section class="ab-section">
+    <div class="ab-section-eye">Our story</div>
+    <h2 class="ab-section-h">Why this <em>evening</em> exists.</h2>
+    <p class="ab-section-p">Placeholder copy. Replace this with the story of how Alps2LA started — what sparked it, the people behind it, and the moment you decided this had to happen. Two paragraphs is plenty.</p>
+    <p class="ab-section-p">Placeholder copy. A second short paragraph adds rhythm and gives space for the human side of the story.</p>
+  </section>
+
+  <section class="ab-section">
+    <div class="ab-section-eye">The athletes</div>
+    <h2 class="ab-section-h">Meet <em>Nico &amp; Seric.</em></h2>
+    <p class="ab-section-p">Placeholder copy. Two national rowers from Switzerland, U23 World Championship silver medallists. Replace this with their full bios — backgrounds, what drives them, the path that brought them here.</p>
+    <p class="ab-section-p">Placeholder copy. You can also mention training, coaches, the team around them, and what the road to LA 2028 looks like from where they stand today.</p>
+  </section>
+
+  <section class="ab-section">
+    <div class="ab-section-eye">The mission</div>
+    <h2 class="ab-section-h">From Montreux to <em>Los Angeles.</em></h2>
+    <p class="ab-section-p">Placeholder copy. Explain the mission — what the funds raised will go toward, how supporters become part of the journey, and what success looks like.</p>
+    <p class="ab-section-p">Placeholder copy. End on what you want the reader to feel, and what action you want them to take next.</p>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html"><img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:52px;width:auto;" /></a>
+  <div class="ft-meta">© 2026 Alps2LA · Fundraising event · Montreux, Switzerland</div>
+  <div class="ft-links">
+    <a href="index.html#register">Register</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="mailto:info@alps2la.com">Contact</a>
+  </div>
+</footer>
+
+<!-- GSAP + Lenis -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+// Always start at top on load/refresh
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
+gsap.registerPlugin(ScrollTrigger);
+
+// ─── LENIS - butter-smooth scroll ────────────────────────────────────────────
+const lenis = new Lenis({
+  duration: 1.4,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smoothWheel: true,
+  wheelMultiplier: 0.85,
+});
+gsap.ticker.add(time => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
+
+// ─── HERO REVEAL ─────────────────────────────────────────────────────────────
+gsap.fromTo('.ab-eyebrow, .ab-h1, .ab-sub',
+  { y: 24, opacity: 0 },
+  { y: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out', delay: 0.15 }
+);
+
+// ─── SECTION FADE-INS (replay each entry) ────────────────────────────────────
+gsap.utils.toArray('.ab-section').forEach((section) => {
+  const items = section.querySelectorAll('.ab-section-eye, .ab-section-h, .ab-section-p');
+  gsap.fromTo(items,
+    { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: section, start: 'top 82%', end: 'bottom 10%', toggleActions: 'play reset play reset' }
+    }
+  );
+});
+
+// ─── iOS VIDEO ACTIVATION + KEEP-ALIVE ──────────────────────────────────────
+(function() {
+  const vid = document.getElementById('bg-video');
+  let reactivating = false;
+  function activateVideo() {
+    if (reactivating) return;
+    reactivating = true;
+    vid.play().catch(() => {}).finally(() => { reactivating = false; });
+  }
+  if (vid.readyState >= 3) { activateVideo(); }
+  else { vid.addEventListener('canplay', activateVideo, { once: true }); }
+  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt => {
+    vid.addEventListener(evt, () => { setTimeout(activateVideo, 50); });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(activateVideo, 50);
+  });
+})();
+</script>
+</body>
+</html>
