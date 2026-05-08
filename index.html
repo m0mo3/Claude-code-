@@ -290,22 +290,30 @@ nav.solid {
    SECTIONS BELOW THE VIDEO
 ════════════════════════════════ */
 
-/* ── ROWING QUOTE - transparent, sits over video between panels and kquote ── */
-#rowing-quote {
-  min-height:265vh;
-  display:flex; align-items:center; justify-content:center;
-  background:transparent;
-  position:relative;
-  padding:48px 48px;
+/* ── ROWERS PHOTO - sticky-pinned, fades in, whole image visible ── */
+#rowers-photo {
+  height: 265vh;
+  position: relative;
+  background: transparent;
 }
-.rq-inner { max-width:1100px; text-align:center; }
-.rq-h {
-  font-family:var(--fd); font-weight:400; color:#fff;
-  font-size:clamp(40px,7vw,110px); line-height:1.05;
-  letter-spacing:-0.025em; margin:0;
-  text-shadow:0 2px 32px rgba(0,0,0,0.55);
+.rp-sticky {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
 }
-.rq-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.78); }
+.rp-img {
+  max-height: 80vh;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.5);
+}
 
 /* ── KINETIC QUOTE - transparent so video shows through ── */
 #kquote {
@@ -569,13 +577,10 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
      BELOW THE VIDEO
 ════════════════════════════ -->
 
-<!-- ROWING QUOTE - transparent, sits over the video background -->
-<section id="rowing-quote">
-  <div class="rq-inner">
-    <h2 class="rq-h">
-      <span class="clip-line"><span class="clip-inner rq-clip">Continue rowing</span></span>
-      <span class="clip-line"><span class="clip-inner rq-clip"><em>to the dream.</em></span></span>
-    </h2>
+<!-- ROWERS PHOTO - sticky-pinned championship image -->
+<section id="rowers-photo">
+  <div class="rp-sticky">
+    <img class="rp-img" src="uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg" alt="Nico &amp; Seric · U23 World Championships · Silver" />
   </div>
 </section>
 
@@ -958,24 +963,16 @@ ScrollTrigger.create({
 setActivePanel(0);
 
 // ─── ROWING QUOTE ─────────────────────────────────────────────────────────────
-gsap.set('#rowing-quote .rq-clip', { y: '105%' });
-gsap.set('#rowing-quote .rq-inner', { opacity: 0, y: 40 });
-const rqTl = gsap.timeline({ paused: true });
-rqTl.to('#rowing-quote .rq-inner', {
-    opacity: 1, y: 0, duration: 1.0, ease: 'power3.out'
-  })
-  .to('#rowing-quote .rq-clip', {
-    y: '0%', duration: 1.0, stagger: 0.2, ease: 'power3.out'
-  }, '-=0.7');
-
+// ─── ROWERS PHOTO fade-in (opacity only — no movement) ───────────────────────
+gsap.set('.rp-img', { opacity: 0 });
 ScrollTrigger.create({
-  trigger: '#rowing-quote .rq-h',
-  start: 'top 85%',
-  end:   'bottom 15%',
-  onEnter:     () => rqTl.restart(),
-  onEnterBack: () => rqTl.restart(),
-  onLeave:     () => rqTl.progress(0).pause(),
-  onLeaveBack: () => rqTl.progress(0).pause(),
+  trigger: '#rowers-photo',
+  start: 'top 60%',
+  end:   'bottom 40%',
+  onEnter:     () => gsap.to('.rp-img', { opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: true }),
+  onEnterBack: () => gsap.to('.rp-img', { opacity: 1, duration: 1.2, ease: 'power2.out', overwrite: true }),
+  onLeave:     () => gsap.to('.rp-img', { opacity: 0, duration: 0.6, ease: 'power2.in',  overwrite: true }),
+  onLeaveBack: () => gsap.to('.rp-img', { opacity: 0, duration: 0.6, ease: 'power2.in',  overwrite: true }),
 });
 
 
