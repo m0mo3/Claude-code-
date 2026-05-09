@@ -204,22 +204,22 @@ footer {
   <section class="ab-section">
     <div class="ab-section-eye">Our story</div>
     <h2 class="ab-section-h">Why this <em>evening</em> exists.</h2>
-    <p class="ab-section-p">Placeholder copy. Replace this with the story of how Alps2LA started — what sparked it, the people behind it, and the moment you decided this had to happen. Two paragraphs is plenty.</p>
-    <p class="ab-section-p">Placeholder copy. A second short paragraph adds rhythm and gives space for the human side of the story.</p>
+    <p class="ab-section-p">Alps2LA started with a simple realisation. Two of the people closest to us were quietly chasing something extraordinary, and the gap between Swiss national champion and Olympic athlete is not bridged by talent alone. It is bridged by training camps, equipment, travel, recovery, and the hundreds of small costs that pile up across a four-year cycle. Watching that pressure build from the sidelines, we decided we did not want to just cheer from a distance. We wanted to do something.</p>
+    <p class="ab-section-p">So we built an evening. A room full of people who believe in Nico and Seric, a stage for their story, and a chance for everyone in it to put their name on the journey to Los Angeles. This is a student-led fundraiser hosted at HIM Montreux, organised by friends, classmates, and people who think the road to LA 2028 should not be walked alone.</p>
   </section>
 
   <section class="ab-section">
     <div class="ab-section-eye">The athletes</div>
     <h2 class="ab-section-h">Meet <em>Nico &amp; Seric.</em></h2>
-    <p class="ab-section-p">Placeholder copy. Two national rowers from Switzerland, U23 World Championship silver medallists. Replace this with their full bios — backgrounds, what drives them, the path that brought them here.</p>
-    <p class="ab-section-p">Placeholder copy. You can also mention training, coaches, the team around them, and what the road to LA 2028 looks like from where they stand today.</p>
+    <p class="ab-section-p">Nicolas Chambers and Seric Critchley are Swiss national champions and U23 World Championship silver medallists. They row out of Switzerland, train through every season the Alps throw at them, and have spent years turning early mornings on the water into results that now put Olympic qualification within reach. Their progression has been steady, deliberate, and earned the hard way.</p>
+    <p class="ab-section-p">Behind them sits a serious support system of coaches, training partners, and family who have shaped the athletes they are today. Ahead of them sits the road to LA 2028, which means selection regattas, international competition, and the relentless work of staying at the level required to qualify. Everything between now and the start line in Los Angeles is what Alps2LA is about.</p>
   </section>
 
   <section class="ab-section">
     <div class="ab-section-eye">The mission</div>
     <h2 class="ab-section-h">From Montreux to <em>Los Angeles.</em></h2>
-    <p class="ab-section-p">Placeholder copy. Explain the mission — what the funds raised will go toward, how supporters become part of the journey, and what success looks like.</p>
-    <p class="ab-section-p">Placeholder copy. End on what you want the reader to feel, and what action you want them to take next.</p>
+    <p class="ab-section-p">Every franc raised at Alps2LA goes directly toward the cost of getting Nico and Seric to LA 2028. That means training camps, racing fees, equipment, travel to international regattas, and the recovery and nutrition that keep elite athletes competing at the top. Every ticket, every donation, and every conversation in the room moves that number forward. Supporters do not just contribute. They become part of the story we hope to tell from the Olympic Village in two years' time.</p>
+    <p class="ab-section-p">So enjoy the evening, meet the athletes, hear from our guest speakers, and know that by being here you are already part of this. The road to Los Angeles starts in Montreux. 5th of June, it starts with you.</p>
   </section>
 
 </div>
@@ -257,13 +257,13 @@ gsap.ticker.add(time => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 lenis.on('scroll', ScrollTrigger.update);
 
-// ─── HERO REVEAL ─────────────────────────────────────────────────────────────
+// ─── HERO REVEAL ───────────────────────────────────────────────────────────────────
 gsap.fromTo('.ab-eyebrow, .ab-h1, .ab-sub',
   { y: 24, opacity: 0 },
   { y: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out', delay: 0.15 }
 );
 
-// ─── SECTION FADE-INS (replay each entry) ────────────────────────────────────
+// ─── SECTION FADE-INS (replay each entry) ────────────────────────────────────────────
 gsap.utils.toArray('.ab-section').forEach((section) => {
   const items = section.querySelectorAll('.ab-section-eye, .ab-section-h, .ab-section-p');
   gsap.fromTo(items,
