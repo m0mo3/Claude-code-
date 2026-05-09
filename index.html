@@ -1059,18 +1059,51 @@ function toggleFaq(btn) {
 }
 
 // ─── FORM ─────────────────────────────────────────────────────────────────────
-function submitForm() {
-  const first = document.getElementById('f-first').value.trim();
-  const last  = document.getElementById('f-last').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  const ok    = document.getElementById('f-ok').checked;
-  const err   = document.getElementById('form-err');
-  if (!first || !last) { err.style.display='block'; err.textContent='Please enter your full name.'; return; }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.style.display='block'; err.textContent='Please enter a valid email.'; return; }
-  if (!ok) { err.style.display='block'; err.textContent='Please agree to be contacted.'; return; }
+async function submitForm() {
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/qnozog8im4suc4fmkow3t2zodovo6n6m';
+  const STRIPE_LINK  = 'PLACEHOLDER_STRIPE_LINK';
+
+  const first  = document.getElementById('f-first').value.trim();
+  const last   = document.getElementById('f-last').value.trim();
+  const age    = document.getElementById('f-age').value.trim();
+  const gender = document.getElementById('f-gender').value;
+  const email  = document.getElementById('f-email').value.trim();
+  const diet   = document.getElementById('f-diet').value.trim();
+  const source = document.getElementById('f-source').value;
+  const ok     = document.getElementById('f-ok').checked;
+  const err    = document.getElementById('form-err');
+
+  function showErr(msg) { err.style.display = 'block'; err.textContent = msg; }
+
+  if (!first || !last) { showErr('Please enter your full name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email.'); return; }
+  if (!ok) { showErr('Please agree to be contacted.'); return; }
   err.style.display = 'none';
-  document.getElementById('reg-form').style.display = 'none';
-  document.getElementById('form-ok').style.display  = 'flex';
+
+  const btn = document.querySelector('.form-cta .vo-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    await fetch(MAKE_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ first, last, age, gender, email, diet, source,
+                             submitted_at: new Date().toISOString() })
+    });
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = 'Secure my place →';
+    showErr('Something went wrong — please try again or email info@alps2la.com.');
+    return;
+  }
+
+  if (STRIPE_LINK.startsWith('http')) {
+    window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email);
+  } else {
+    document.getElementById('reg-form').style.display = 'none';
+    document.getElementById('form-ok').style.display  = 'flex';
+  }
 }
 function shareEvt() {
   if (navigator.share) navigator.share({ title: 'Alps2LA', url: location.href });
