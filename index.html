@@ -1060,7 +1060,7 @@ function toggleFaq(btn) {
 
 // ─── FORM ─────────────────────────────────────────────────────────────────────
 async function submitForm() {
-  const MAKE_WEBHOOK = 'PLACEHOLDER_MAKE_WEBHOOK_URL';
+  const MAKE_WEBHOOK = 'https://hook.eu1.make.com/qnozog8im4suc4fmkow3t2zodovo6n6m';
   const STRIPE_LINK  = 'PLACEHOLDER_STRIPE_LINK';
 
   const first  = document.getElementById('f-first').value.trim();
@@ -1098,7 +1098,12 @@ async function submitForm() {
     return;
   }
 
-  window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email);
+  if (STRIPE_LINK.startsWith('http')) {
+    window.location.href = STRIPE_LINK + '?prefilled_email=' + encodeURIComponent(email);
+  } else {
+    document.getElementById('reg-form').style.display = 'none';
+    document.getElementById('form-ok').style.display  = 'flex';
+  }
 }
 function shareEvt() {
   if (navigator.share) navigator.share({ title: 'Alps2LA', url: location.href });
