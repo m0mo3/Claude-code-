@@ -492,7 +492,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
      Fixed full-viewport. Scrubs across the entire page scroll.
      Sits behind everything (z-index: -2).
 ════════════════════════════════════════════════════ -->
-<video id="bg-video" src="rowing.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+<video id="bg-video" src="rowing.mp4" muted autoplay playsinline webkit-playsinline preload="auto" poster="uploads/b91ce3e8-ea2e-4cef-88fb-3f9f50c76f13.jpeg"></video>
 <div id="bg-overlay"></div>
 <div id="bg-scanlines"></div>
 
@@ -834,7 +834,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     window.addEventListener('load', revealPage);
   } else {
     video.addEventListener('canplaythrough', revealPage, { once: true });
-    window.addEventListener('load', () => setTimeout(revealPage, 1800), { once: true });
+    window.addEventListener('load', () => setTimeout(revealPage, 800), { once: true });
   }
 })();
 
@@ -1111,4 +1111,3 @@ function shareEvt() {
 }
 </script>
 </body>
-</html>
