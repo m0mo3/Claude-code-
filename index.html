@@ -461,8 +461,12 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
+  nav{padding:0 16px;gap:10px;}
+  #bg-video{object-fit:contain;background:#000;}
+  .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
+  .nav-links a{font-size:12px;letter-spacing:0.04em;}
+  .nav-links a[href="#event"],.nav-links a[href="#register"]{display:none;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
   .event-wrap{grid-template-columns:1fr;gap:44px;}
   .form-row{grid-template-columns:1fr;}
   .form-card{padding:24px 18px;}
