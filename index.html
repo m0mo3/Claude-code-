@@ -462,7 +462,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:0 16px;gap:10px;}
-  #bg-video{object-fit:contain;background:#000;}
+  #bg-video{inset:unset;top:0;left:0;right:0;width:100vw;height:100vw;object-fit:cover;}
   .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
   .nav-links a{font-size:12px;letter-spacing:0.04em;}
   .nav-links a[href="#event"],.nav-links a[href="#register"]{display:none;}
