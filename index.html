@@ -4,10 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#020214">
+<meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Be the first to believe - a fundraising evening for national rowers Nico Chambers & Seric Critchley. June 5, 2026, HIM Business School, Montreux.">
 <title>Alps2LA - Be the First to Believe · Montreux, June 5</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Alps2LA - Be the First to Believe",
+  "description": "A fundraising evening for Swiss national rowers Nicolas Chambers and Seric Critchley on their road to LA 2028.",
+  "startDate": "2026-06-05T17:30:00+02:00",
+  "endDate": "2026-06-05T20:30:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "HIM Business School",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue des Alpes 15",
+      "addressLocality": "Montreux",
+      "postalCode": "1820",
+      "addressRegion": "Vaud",
+      "addressCountry": "CH"
+    }
+  },
+  "image": "https://alps2la.com/uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg",
+  "offers": {
+    "@type": "Offer",
+    "name": "Entry",
+    "price": "15",
+    "priceCurrency": "CHF",
+    "url": "https://alps2la.com/#register",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01T00:00:00+01:00"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Alps2LA",
+    "url": "https://alps2la.com",
+    "email": "info@alps2la.com"
+  },
+  "performer": [
+    { "@type": "Person", "name": "Nicolas Chambers" },
+    { "@type": "Person", "name": "Seric Critchley" }
+  ]
+}
+</script>
 <style>
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
@@ -97,7 +142,7 @@ body { background:transparent; color:var(--white); font-family:var(--fs); overfl
 /* ── NAV ── */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:200;
-  display:flex; align-items:center; justify-content:space-between;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   padding:0 48px; height:64px;
   transition:background 500ms ease, border-color 500ms ease;
   border-bottom:1px solid transparent;
@@ -133,6 +178,7 @@ nav.solid {
   transition:background 200ms, transform 150ms;
 }
 .nav-cta:hover { background:var(--red-dim); transform:scale(0.97); }
+.nav-ctas { display:flex; gap:12px; justify-self:end; align-items:center; }
 
 /* ════════════════════════════════════════════════
    VIDEO SCROLL SECTION
@@ -160,7 +206,7 @@ nav.solid {
 .vo-panel {
   position:absolute; inset:0; z-index:3;
   display:flex; align-items:center; justify-content:center;
-  padding:0 32px; opacity:0; pointer-events:none;
+  padding:64px 32px 0; opacity:0; pointer-events:none;
 }
 .vo-panel.active { pointer-events:auto; }
 
@@ -177,7 +223,7 @@ nav.solid {
 .vo-eyebrow {
   font-family:var(--fs); font-size:11px; font-weight:700;
   letter-spacing:0.26em; text-transform:uppercase;
-  color:rgba(255,255,255,0.5); margin-bottom:24px;
+  color:rgba(255,255,255,0.88); margin-bottom:24px;
 }
 .vo-h {
   font-family:var(--fd); font-weight:400; color:#fff;
@@ -187,7 +233,7 @@ nav.solid {
 .vo-h em { font-style:italic; color:var(--orange-light); }
 .vo-sub {
   font-family:var(--fs); font-size:clamp(15px,1.8vw,20px);
-  font-weight:300; color:rgba(255,255,255,0.6); line-height:1.75;
+  font-weight:300; color:rgba(255,255,255,0.9); line-height:1.75;
   max-width:560px;
 }
 .vo-label {
@@ -202,7 +248,7 @@ nav.solid {
 .vo-stat-h em { font-style:italic; color:var(--orange-light); }
 .vo-body {
   font-family:var(--fs); font-size:clamp(14px,1.6vw,18px);
-  font-weight:300; color:rgba(255,255,255,0.55); line-height:1.8;
+  font-weight:300; color:rgba(255,255,255,0.88); line-height:1.8;
   max-width:480px; margin-top:16px;
 }
 
@@ -220,7 +266,7 @@ nav.solid {
   font-family:var(--fs); font-size:10px; font-weight:700;
   letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.35);
 }
-.vo-ath-bio { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.8; text-align:center; }
+.vo-ath-bio { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.82); line-height:1.8; text-align:center; }
 
 /* Photo layered over video */
 .vo-photo-wrap {
@@ -327,7 +373,7 @@ nav.solid {
 .kq-divider { width:40px; height:1px; background:var(--red); margin:36px auto 0; transform-origin:left; }
 .kq-sub {
   font-family:var(--fs); font-size:15px; font-weight:300;
-  color:rgba(255,255,255,0.42); line-height:1.8; max-width:500px; margin:24px auto 0;
+  color:rgba(255,255,255,0.85); line-height:1.8; max-width:500px; margin:24px auto 0;
 }
 
 /* ── STATS - transparent ── */
@@ -346,7 +392,7 @@ nav.solid {
 .sec-eye { font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:14px; display:block; }
 .sec-h { font-family:var(--fd); font-size:clamp(34px,4vw,56px); font-weight:400; line-height:1.1; letter-spacing:-0.025em; color:#fff; margin-bottom:22px; }
 .sec-h em { font-style:italic; color:var(--orange-light); }
-.sec-p { font-family:var(--fs); font-size:15px; font-weight:300; color:rgba(255,255,255,0.48); line-height:1.85; margin-bottom:36px; }
+.sec-p { font-family:var(--fs); font-size:15px; font-weight:300; color:rgba(255,255,255,0.85); line-height:1.85; margin-bottom:36px; }
 .details-list { list-style:none; }
 .detail-row { display:flex; align-items:flex-start; gap:18px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
 .detail-row:first-child { border-top:1px solid rgba(255,255,255,0.05); }
@@ -362,7 +408,7 @@ nav.solid {
 .vc-dot { width:7px; height:7px; border-radius:9999px; background:var(--red); animation:pulseDot 2s ease-in-out infinite; }
 .vc-badge span { font-family:var(--fs); font-size:11px; font-weight:600; color:#fff; letter-spacing:0.06em; }
 .vc-name { font-family:var(--fd); font-size:28px; color:#fff; margin-bottom:6px; }
-.vc-addr { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.38); line-height:1.7; margin-bottom:22px; }
+.vc-addr { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.8); line-height:1.7; margin-bottom:22px; }
 .vc-map { display:inline-flex; align-items:center; gap:6px; font-family:var(--fs); font-size:12px; font-weight:600; color:#88AAFF; text-decoration:none; transition:color 150ms; }
 .vc-map:hover { color:#fff; }
 .vc-city { font-family:var(--fd); font-size:68px; color:rgba(255,255,255,0.03); line-height:1; position:absolute; bottom:12px; right:20px; pointer-events:none; letter-spacing:-0.04em; }
@@ -371,7 +417,7 @@ nav.solid {
 .prog-row { display:flex; gap:16px; align-items:baseline; margin-bottom:12px; }
 .prog-row:last-child { margin-bottom:0; }
 .prog-time { font-family:var(--fs); font-size:12px; font-weight:700; color:var(--orange); min-width:40px; }
-.prog-item { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.46); }
+.prog-item { font-family:var(--fs); font-size:13px; font-weight:300; color:rgba(255,255,255,0.85); }
 
 /* ── PHOTO BAND ── */
 #photoband { width:100%; position:relative; background:#020214; }
@@ -406,7 +452,7 @@ nav.solid {
 .form-success { display:none; flex-direction:column; align-items:center; gap:14px; padding:24px 0; text-align:center; }
 .suc-icon { width:60px; height:60px; border-radius:9999px; background:rgba(255,0,0,0.08); border:2px solid rgba(255,0,0,0.28); display:flex; align-items:center; justify-content:center; }
 .form-success h3 { font-family:var(--fd); font-size:30px; color:#fff; }
-.form-success p { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.42); line-height:1.7; }
+.form-success p { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.82); line-height:1.7; }
 
 /* ── FAQ - transparent with dark veil ── */
 #faq { padding:96px 48px; background:transparent; position:relative; }
@@ -422,13 +468,13 @@ nav.solid {
 .faq-item.open .faq-ic { background:var(--red); border-color:var(--red); transform:rotate(45deg); color:#fff; }
 .faq-ans { max-height:0; overflow:hidden; transition:max-height 450ms cubic-bezier(0.25,0.1,0.25,1); }
 .faq-item.open .faq-ans { max-height:320px; }
-.faq-ans-in { padding:0 0 24px; font-family:var(--fs); font-size:14px; font-weight:300; color:rgba(255,255,255,0.42); line-height:1.85; }
+.faq-ans-in { padding:0 0 24px; font-family:var(--fs); font-size:14px; font-weight:300; color:rgba(255,255,255,0.85); line-height:1.85; }
 
 /* ── SOCIAL - transparent ── */
 #social { padding:72px 48px; background:transparent; text-align:center; position:relative; }
 #social::before { content:''; position:absolute; inset:0; background:rgba(2,2,20,0.62); z-index:-1; }
 .soc-h { font-family:var(--fd); font-size:36px; color:#fff; margin-bottom:6px; }
-.soc-s { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.3); margin-bottom:30px; }
+.soc-s { font-family:var(--fs); font-size:14px; color:rgba(255,255,255,0.75); margin-bottom:30px; }
 .ig-btn { display:inline-flex; align-items:center; gap:9px; background:linear-gradient(135deg,rgba(131,58,180,0.15),rgba(253,29,29,0.15),rgba(252,176,69,0.15)); border:1px solid rgba(255,255,255,0.09); border-radius:9999px; padding:13px 26px; color:#fff; text-decoration:none; font-family:var(--fs); font-size:14px; font-weight:600; transition:background 250ms,transform 150ms; }
 .ig-btn:hover { background:linear-gradient(135deg,rgba(131,58,180,0.28),rgba(253,29,29,0.28),rgba(252,176,69,0.28)); transform:scale(0.98); }
 .ig-btn-sm { display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,rgba(131,58,180,0.15),rgba(253,29,29,0.15),rgba(252,176,69,0.15)); border:1px solid rgba(255,255,255,0.09); border-radius:9999px; padding:9px 18px; color:#fff; text-decoration:none; font-family:var(--fs); font-size:12px; font-weight:600; transition:background 250ms,transform 150ms; }
@@ -461,8 +507,13 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
+  nav{padding:0 16px;gap:10px;display:flex;}
+  .nav-ctas{gap:0;}
+  .nav-ctas a[href="donate.html"]{display:none;}
+  .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
+  .nav-links a{font-size:12px;letter-spacing:0.04em;}
+  .nav-links a[href="#video-scroll"],.nav-links a[href="#event"],.nav-links a[href="#register"],.nav-links a[href="#faq"]{display:none;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
   .event-wrap{grid-template-columns:1fr;gap:44px;}
   .form-row{grid-template-columns:1fr;}
   .form-card{padding:24px 18px;}
@@ -492,7 +543,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
      Fixed full-viewport. Scrubs across the entire page scroll.
      Sits behind everything (z-index: -2).
 ════════════════════════════════════════════════════ -->
-<video id="bg-video" src="rowing.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+<video id="bg-video" src="rowing.mp4" muted autoplay loop playsinline webkit-playsinline preload="auto" disablepictureinpicture x-webkit-airplay="deny" poster="uploads/b91ce3e8-ea2e-4cef-88fb-3f9f50c76f13.jpeg"></video>
 <div id="bg-overlay"></div>
 <div id="bg-scanlines"></div>
 
@@ -519,8 +570,12 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
     <a href="#register">Register</a>
     <a href="#faq">FAQ</a>
     <a href="about.html">About us</a>
+    <a href="donate.html">Donate</a>
   </div>
-  <a href="#register" class="nav-cta">Register now</a>
+  <div class="nav-ctas">
+    <a href="donate.html" class="nav-cta">Donate now</a>
+    <a href="#register" class="nav-cta">Register now</a>
+  </div>
 </nav>
 
 <!-- ════════════════════════════════════════════════════
@@ -546,7 +601,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
           <a href="#event" class="vo-btn-ghost" style="margin-top:0;margin-left:0;padding:16px 32px;">The event</a>
         </div>
         <div style="margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:10px;">
-          <p style="font-family:var(--fs);font-size:13px;font-weight:400;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin:0;">Scroll to be a part of the <em style="font-family:Georgia,serif;font-style:italic;color:#fff;">journey</em></p>
+          <p style="font-family:var(--fs);font-size:13px;font-weight:400;color:rgba(255,255,255,0.88);letter-spacing:0.04em;margin:0;">Scroll to be a part of the <em style="font-family:Georgia,serif;font-style:italic;color:#fff;">journey</em></p>
           <svg width="18" height="28" viewBox="0 0 18 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5;animation:arrowBob 1.8s ease-in-out infinite;">
             <line x1="9" y1="0" x2="9" y2="20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
             <polyline points="3,14 9,22 15,14" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -593,7 +648,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- STATS -->
 <section id="stats">
   <div class="stats-grid">
-    <div class="stat-item"><div class="stat-num"><em>U23</em></div><div class="stat-lbl">World Championships Silver</div></div>
+    <div class="stat-item"><div class="stat-num"><em>U23</em></div><div class="stat-lbl">World Championships Bronze</div></div>
     <div class="stat-item"><div class="stat-num">2</div><div class="stat-lbl">National Rowers</div></div>
     <div class="stat-item"><div class="stat-num">1</div><div class="stat-lbl">Night to change everything</div></div>
   </div>
@@ -613,7 +668,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
         </li>
         <li class="detail-row">
           <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div><div class="detail-lbl">Time</div><div class="detail-val">Doors open 17:30 · Close 20:30</div></div>
+          <div><div class="detail-lbl">Time</div><div class="detail-val">17:30 to 20:30</div></div>
         </li>
         <li class="detail-row">
           <div class="detail-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -638,10 +693,11 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
       <div class="prog-card">
         <div class="prog-title">Evening programme</div>
         <div class="prog-row"><span class="prog-time">17:30</span><span class="prog-item">Arrival &amp; welcome drinks</span></div>
-        <div class="prog-row"><span class="prog-time">18:00</span><span class="prog-item">Opening remarks &amp; Alps2LA presentation</span></div>
-        <div class="prog-row"><span class="prog-time">18:30</span><span class="prog-item">Nico &amp; Seric - their story in their words</span></div>
-        <div class="prog-row"><span class="prog-time">19:15</span><span class="prog-item">Dinner &amp; fundraising</span></div>
-        <div class="prog-row"><span class="prog-time">20:30</span><span class="prog-item">Networking &amp; close</span></div>
+        <div class="prog-row"><span class="prog-time">18:00</span><span class="prog-item">Opening - Nico &amp; Seric - their story in their words</span></div>
+        <div class="prog-row"><span class="prog-time">18:30</span><span class="prog-item">Guest Speaker - Raphaël - Nico &amp; Seric's coach and rowing champion</span></div>
+        <div class="prog-row"><span class="prog-time">18:45</span><span class="prog-item">Games &amp; competition</span></div>
+        <div class="prog-row"><span class="prog-time">19:45</span><span class="prog-item">Guest Speaker 2 - TBA</span></div>
+        <div class="prog-row"><span class="prog-time">20:15</span><span class="prog-item">Awards, raffle &amp; closing</span></div>
       </div>
     </div>
   </div>
@@ -653,9 +709,9 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
   <div class="pb-caption">
     <div>
       <div class="pb-label">U23 World Championships</div>
-      <div class="pb-title">Silver medallists - <em>Switzerland</em></div>
+      <div class="pb-title">Bronze medallists - <em>Switzerland</em></div>
     </div>
-    <a href="#register" class="vo-btn" style="flex-shrink:0;">Register now →</a>
+    <a href="#register" class="vo-btn" style="flex-shrink:0;">Register now &rarr;</a>
   </div>
 </div>
 
@@ -677,17 +733,17 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
         </div>
         <div class="form-row"><div class="form-group full"><label class="form-lbl">Email address</label><input class="form-inp" type="email" placeholder="you@example.com" id="f-email" /></div></div>
         <div class="form-row"><div class="form-group full"><label class="form-lbl">Dietary restrictions / Allergies</label><input class="form-inp" type="text" placeholder="e.g. vegetarian, gluten-free, nut allergy - or leave blank" id="f-diet" /></div></div>
-        <div class="form-row"><div class="form-group full"><label class="form-lbl">How did you hear about this?</label><select class="form-sel" id="f-source"><option value="">Select one…</option><option value="instagram">Alps2LA Instagram</option><option value="friend">Friend or colleague</option><option value="him">HIM Business School</option><option value="other">Other</option></select></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-lbl">How did you hear about this?</label><select class="form-sel" id="f-source"><option value="">Select one…</option><option value="instagram">Instagram</option><option value="friend">Friends or family</option><option value="advertisement">Advertisement</option><option value="him">HIM Business School</option><option value="other">Other</option></select></div></div>
         <div class="form-check"><input type="checkbox" id="f-ok" /><label for="f-ok">I agree to be contacted by Alps2LA about this event and future updates.</label></div>
         <div id="form-err"></div>
-        <div class="form-cta"><button class="vo-btn" style="width:100%;text-align:center;display:block;border-radius:12px;font-size:15px;" onclick="submitForm()">Secure my place →</button></div>
+        <div class="form-cta"><button class="vo-btn" style="width:100%;text-align:center;display:block;border-radius:12px;font-size:15px;" onclick="submitForm()">Secure my place &rarr;</button></div>
         <p style="margin-top:18px;text-align:center;font-family:var(--fs);font-size:12px;color:rgba(255,255,255,0.25);">Questions? <a href="mailto:info@alps2la.com" style="color:rgba(255,255,255,0.45);text-decoration:none;">info@alps2la.com</a></p>
       </div>
       <div class="form-success" id="form-ok">
         <div class="suc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7070" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h3>You're registered.</h3>
-        <p>We'll confirm your place shortly.<br>See you in Montreux on June 5th.</p>
-        <a href="#" style="margin-top:8px;display:inline-block;font-family:var(--fs);font-size:14px;color:rgba(255,255,255,0.5);text-decoration:none;" onclick="event.preventDefault();shareEvt()">Share the event →</a>
+        <p>Your spot is reserved - we'll send your CHF 15 payment link<br>to your email shortly. See you in Montreux on June 5th.</p>
+        <a href="#" style="margin-top:8px;display:inline-block;font-family:var(--fs);font-size:14px;color:rgba(255,255,255,0.5);text-decoration:none;" onclick="event.preventDefault();shareEvt()">Share the event &rarr;</a>
       </div>
     </div>
   </div>
@@ -700,13 +756,12 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
       <span class="sec-eye" style="display:block;margin-bottom:12px;">Questions</span>
       <h2 class="sec-h">Everything you<br><em>need to know.</em></h2>
     </div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Is there a ticket price or donation requirement?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">The event is free to attend. Donations on the night go directly toward training, travel, and competition costs.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Who are Nico Chambers and Seric Critchley?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">National-level rowers representing Switzerland - silver medallists at the U23 World Rowing Championships.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">What is Alps2LA's connection to the event?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Alps2LA bridges alpine culture with the Los Angeles spirit. This event is hosted by Alps2LA in partnership with HIM Business School.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Where is HIM Business School?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">In the heart of Montreux, on the shores of Lake Geneva. Transport info will be sent to registered guests.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Can I bring guests or colleagues?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Yes - indicate the number of guests when registering. Spaces are limited so register early.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Will there be food and drinks?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Welcome drinks on arrival and dinner are included. Dietary requirements can be noted at registration.</div></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">How do I follow Nico and Seric's progress?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Follow @alps2la on Instagram, or the athletes directly: @nico._chambers and @seric_.critchley.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">How much is entry and what does the ticket include?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">The entry for the event is CHF 15, this will include raffle tickets for a chance to win special prizes during the event.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Who are Nicolas Chambers and Seric Critchley?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Nico &amp; Seric are Swiss national rowers and you can learn more about them on the <a href="about.html" style="color:rgba(255,100,100,0.9);text-decoration:underline;">about us</a> page.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Where exactly does the money go?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">The money will fund Nico &amp; Seric's journey to LA 2028. It will go to things such as training, equipment, flight tickets, and more to support them.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Can I donate without attending?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Yes, you can donate without attending. The donation will be available at the top of the page.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">How do I get to HIM campus, and is there parking?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">HIM campus is located at Avenue des Alpes 15, Vaud, 1820, Montreux. It is a 5 minute walk from the train station and is situated beautifully over Lac L&eacute;man.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span class="faq-qt">Will food and drinks be available, and are they included?</span><div class="faq-ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-ans"><div class="faq-ans-in">Finger food and drinks will be available to all guests who attend the event.</div></div></div>
   </div>
 </section>
 
@@ -726,13 +781,13 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <!-- FOOTER -->
 <footer>
   <a href="#"><img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:52px;width:auto;" /></a>
-  <div class="ft-meta">© 2026 Alps2LA · Fundraising event · Montreux, Switzerland</div>
+  <div class="ft-meta">&copy; 2026 Alps2LA &middot; Fundraising event &middot; Montreux, Switzerland</div>
   <div class="ft-links"><a href="#register">Register</a><a href="#faq">FAQ</a><a href="mailto:info@alps2la.com">Contact</a></div>
 </footer>
 
 <!-- TWEAKS -->
 <div id="tweaks">
-  <div class="tw-title">Tweaks<span class="tw-x" onclick="closeTweaks()">×</span></div>
+  <div class="tw-title">Tweaks<span class="tw-x" onclick="closeTweaks()">&times;</span></div>
   <div class="tw-group"><div class="tw-lbl">Accent color</div><div class="tw-opts"><button class="tw-btn on" onclick="setAccent('red',this)">Swiss Red</button><button class="tw-btn" onclick="setAccent('orange',this)">Canyon</button><button class="tw-btn" onclick="setAccent('blue',this)">Navy</button></div></div>
 </div>
 
@@ -771,37 +826,50 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// ─── iOS VIDEO ACTIVATION ─────────────────────────────────────────────────────
-// iOS Safari won't allow currentTime scrubbing until the video has been
-// "activated" once. We play it for one frame then immediately pause.
-// Also keeps the video alive — browsers (Safari especially) suspend idle
-// videos after inactivity, freezing scroll-scrubbing. We listen for suspend/
-// stall events and reactivate, plus run a low-cost heartbeat.
+// ─── VIDEO ACTIVATION ─────────────────────────────────────────────────────────
+// Same approach on mobile + desktop now: play-then-pause to unlock currentTime
+// for scroll-scrubbing. On mobile we additionally retry on the first user
+// gesture to handle iOS Low Power Mode (silently blocks autoplay until tap).
+const IS_MOBILE = window.matchMedia('(max-width:768px)').matches
+               || (('ontouchstart' in window) && Math.min(window.innerWidth, window.innerHeight) <= 820);
+
 (function() {
   const vid = document.getElementById('bg-video');
+
+  vid.addEventListener('loadedmetadata', () => ScrollTrigger.refresh(), { once: true });
+
   let reactivating = false;
   function activateVideo() {
     if (reactivating) return;
     reactivating = true;
-    vid.play().then(() => {
+    const p = vid.play();
+    if (p && p.then) {
+      p.then(() => { vid.pause(); reactivating = false; })
+       .catch(() => { reactivating = false; });
+    } else {
       vid.pause();
       reactivating = false;
-    }).catch(() => { reactivating = false; });
+    }
   }
   function reactivateIfStuck() {
-    if (vid.readyState < 2 || vid.paused === false) return;
+    if (vid.readyState < 2) return;
     activateVideo();
   }
   if (vid.readyState >= 3) { activateVideo(); }
   else { vid.addEventListener('canplay', activateVideo, { once: true }); }
 
-  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt => {
-    vid.addEventListener(evt, () => { setTimeout(activateVideo, 50); });
-  });
+  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt =>
+    vid.addEventListener(evt, () => setTimeout(activateVideo, 50)));
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) setTimeout(activateVideo, 50);
   });
-  // Expose for ScrollTrigger to call when readyState drops
+
+  // Mobile-only: first user gesture unlocks autoplay if Low Power Mode is on.
+  if (IS_MOBILE) {
+    ['touchstart', 'touchend', 'click', 'scroll', 'keydown'].forEach(evt =>
+      window.addEventListener(evt, activateVideo, { once: true, passive: true }));
+  }
+
   window.__reactivateBgVideo = reactivateIfStuck;
 })();
 
@@ -816,26 +884,37 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     fill.style.right = (100 - pct) + '%';
   }, 80);
 
+  let revealed = false;
   function revealPage() {
+    if (revealed) return;
+    revealed = true;
     clearInterval(tick);
     fill.style.right = '0%';
     pctEl.textContent = 100;
     setTimeout(() => {
       const loader = document.getElementById('loader');
       loader.classList.add('hidden');
-      setTimeout(() => loader.style.display = 'none', 900);
+      setTimeout(() => {
+        loader.style.display = 'none';
+        ScrollTrigger.refresh();
+      }, 900);
       // Make hero panel (panel 0) visible immediately on load
       setActivePanel(0);
     }, 350);
   }
 
   const video = document.getElementById('bg-video');
-  if (video.readyState >= 3) {
+  const HARD_FALLBACK = IS_MOBILE ? 1200 : 1800;
+  // Mobile: don't wait for full buffer — loadedmetadata is enough to start playing.
+  const readyEvent = IS_MOBILE ? 'loadeddata' : 'canplaythrough';
+  if (video.readyState >= (IS_MOBILE ? 2 : 3)) {
     window.addEventListener('load', revealPage);
   } else {
-    video.addEventListener('canplaythrough', revealPage, { once: true });
-    window.addEventListener('load', () => setTimeout(revealPage, 1800), { once: true });
+    video.addEventListener(readyEvent, revealPage, { once: true });
+    window.addEventListener('load', () => setTimeout(revealPage, HARD_FALLBACK), { once: true });
   }
+  // Absolute backstop in case neither 'load' nor 'loadeddata' ever fires.
+  setTimeout(revealPage, 4000);
 })();
 
 // ─── NAV + PROGRESS ──────────────────────────────────────────────────────────
@@ -931,7 +1010,7 @@ function animatePanelIn(panel) {
 // Only seek the video when currentTime has shifted by a meaningful amount —
 // avoids dozens of redundant micro-seeks per second that cause visible stutter.
 let lastSeek = -1;
-const SEEK_EPS = 1 / 30; // ~33ms / one frame at 30fps
+const SEEK_EPS = IS_MOBILE ? 1 / 15 : 1 / 30;
 ScrollTrigger.create({
   trigger: document.documentElement,
   start: 'top top',
@@ -997,7 +1076,7 @@ ScrollTrigger.create({
 gsap.utils.toArray('.stat-item').forEach((el, i) => {
   gsap.fromTo(el, { y: 36, opacity: 0 },
     { y: 0, opacity: 1, duration: 0.8, delay: i * 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '#stats', start: 'top 82%', end: 'bottom 15%', toggleActions: 'play reset play reset' }
+      scrollTrigger: { trigger: '#stats', start: 'top 82%', end: 'bottom 15%', toggleActions: 'play none none none' }
     }
   );
 });
@@ -1006,7 +1085,7 @@ gsap.utils.toArray('.stat-item').forEach((el, i) => {
 gsap.utils.toArray('#event .sec-eye, #event .sec-h, #event .sec-p, #event .detail-row, #event .venue-card, #event .prog-card').forEach((el, i) => {
   gsap.fromTo(el, { y: 30, opacity: 0 },
     { y: 0, opacity: 1, duration: 0.7, delay: (i % 5) * 0.08, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', end: 'bottom 10%', toggleActions: 'play reset play reset' }
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'bottom 10%', toggleActions: 'play none none none' }
     }
   );
 });
@@ -1022,7 +1101,7 @@ ScrollTrigger.create({
 });
 gsap.fromTo('.pb-label, .pb-title', { y: 20, opacity: 0 },
   { y: 0, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'power3.out',
-    scrollTrigger: { trigger: '#photoband', start: 'top 75%', end: 'bottom 15%', toggleActions: 'play reset play reset' }
+    scrollTrigger: { trigger: '#photoband', start: 'top 75%', end: 'bottom 15%', toggleActions: 'play none none none' }
   }
 );
 
@@ -1031,7 +1110,7 @@ gsap.fromTo('.pb-label, .pb-title', { y: 20, opacity: 0 },
 gsap.utils.toArray('#register .sec-eye, #register .sec-h, #register .sec-p, #register .form-card, #faq .sec-eye, #faq .sec-h, #faq .faq-item, #social > div').forEach((el, i) => {
   gsap.fromTo(el, { y: 28, opacity: 0 },
     { y: 0, opacity: 1, duration: 0.7, delay: (i % 4) * 0.06, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', end: 'bottom 10%', toggleActions: 'play reset play reset' }
+      scrollTrigger: { trigger: el, start: 'top 90%', end: 'bottom 10%', toggleActions: 'play none none none' }
     }
   );
 });
@@ -1110,5 +1189,4 @@ function shareEvt() {
   else navigator.clipboard.writeText(location.href).then(() => alert('Link copied!'));
 }
 </script>
-</body>
-</html>
+</body></html>
