@@ -817,8 +817,8 @@ const IS_MOBILE = window.matchMedia('(max-width:768px)').matches
     ['touchstart', 'touchend', 'click', 'scroll', 'keydown'].forEach(evt =>
       window.addEventListener(evt, activateVideo, { once: true, passive: true }));
   }
-    window.__reactivateBgVideo = reactivateIfStuck;
-  }
+
+  window.__reactivateBgVideo = reactivateIfStuck;
 })();
 
 // ─── LOADER ───────────────────────────────────────────────────────────────────
