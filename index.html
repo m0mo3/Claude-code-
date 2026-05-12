@@ -9,6 +9,50 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Be the first to believe - a fundraising evening for national rowers Nico Chambers & Seric Critchley. June 5, 2026, HIM Business School, Montreux.">
 <title>Alps2LA - Be the First to Believe · Montreux, June 5</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Alps2LA - Be the First to Believe",
+  "description": "A fundraising evening for Swiss national rowers Nicolas Chambers and Seric Critchley on their road to LA 2028.",
+  "startDate": "2026-06-05T17:30:00+02:00",
+  "endDate": "2026-06-05T20:30:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "HIM Business School",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue des Alpes 15",
+      "addressLocality": "Montreux",
+      "postalCode": "1820",
+      "addressRegion": "Vaud",
+      "addressCountry": "CH"
+    }
+  },
+  "image": "https://alps2la.com/uploads/94026a8c-4815-4fba-baa9-d54d81431529.jpeg",
+  "offers": {
+    "@type": "Offer",
+    "name": "Entry",
+    "price": "15",
+    "priceCurrency": "CHF",
+    "url": "https://alps2la.com/#register",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01T00:00:00+01:00"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Alps2LA",
+    "url": "https://alps2la.com",
+    "email": "info@alps2la.com"
+  },
+  "performer": [
+    { "@type": "Person", "name": "Nicolas Chambers" },
+    { "@type": "Person", "name": "Seric Critchley" }
+  ]
+}
+</script>
 <style>
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
@@ -688,9 +732,10 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
           <div class="form-group"><label class="form-lbl">Gender</label><select class="form-sel" id="f-gender"><option value="">Select…</option><option value="male">Male</option><option value="female">Female</option><option value="undisclosed">Prefer not to say</option></select></div>
         </div>
         <div class="form-row"><div class="form-group full"><label class="form-lbl">Email address</label><input class="form-inp" type="email" placeholder="you@example.com" id="f-email" /></div></div>
-        <div class="form-row"><div class="form-group full"><label class="form-lbl">Dietary restrictions / Allergies</label><input class="form-inp" type="text" placeholder="e.g. vegetarian, gluten-free, nut allergy - or leave blank" id="f-diet" /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-lbl">Dietary restrictions / Allergies</label><input class="form-inp" type="text" placeholder="e.g. vegetarian, gluten-free, nut allergy, or 'none'" id="f-diet" /></div></div>
         <div class="form-row"><div class="form-group full"><label class="form-lbl">How did you hear about this?</label><select class="form-sel" id="f-source"><option value="">Select one…</option><option value="instagram">Instagram</option><option value="friend">Friends or family</option><option value="advertisement">Advertisement</option><option value="him">HIM Business School</option><option value="other">Other</option></select></div></div>
         <div class="form-check"><input type="checkbox" id="f-ok" /><label for="f-ok">I agree to be contacted by Alps2LA about this event and future updates.</label></div>
+        <p id="privacy" style="margin-top:10px;font-family:var(--fs);font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;">We'll only use your information to organise this event and won't share it with third parties.</p>
         <div id="form-err"></div>
         <div class="form-cta"><button class="vo-btn" style="width:100%;text-align:center;display:block;border-radius:12px;font-size:15px;" onclick="submitForm()">Secure my place &rarr;</button></div>
         <p style="margin-top:18px;text-align:center;font-family:var(--fs);font-size:12px;color:rgba(255,255,255,0.25);">Questions? <a href="mailto:info@alps2la.com" style="color:rgba(255,255,255,0.45);text-decoration:none;">info@alps2la.com</a></p>
@@ -738,7 +783,7 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 <footer>
   <a href="#"><img src="uploads/c42fb529-087b-4449-a868-bcbac4d57733.png" alt="Alps2LA" style="height:52px;width:auto;" /></a>
   <div class="ft-meta">&copy; 2026 Alps2LA &middot; Fundraising event &middot; Montreux, Switzerland</div>
-  <div class="ft-links"><a href="#register">Register</a><a href="#faq">FAQ</a><a href="mailto:info@alps2la.com">Contact</a></div>
+  <div class="ft-links"><a href="#register">Register</a><a href="#faq">FAQ</a><a href="#privacy">Privacy</a><a href="mailto:info@alps2la.com">Contact</a></div>
 </footer>
 
 <!-- TWEAKS -->
@@ -1111,7 +1156,11 @@ async function submitForm() {
   function showErr(msg) { err.style.display = 'block'; err.textContent = msg; }
 
   if (!first || !last) { showErr('Please enter your full name.'); return; }
+  if (!age || isNaN(age) || +age < 1 || +age > 120) { showErr('Please enter a valid age.'); return; }
+  if (!gender) { showErr('Please select a gender option.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email.'); return; }
+  if (!diet) { showErr('Please list any dietary restrictions or write "none".'); return; }
+  if (!source) { showErr('Please tell us how you heard about this.'); return; }
   if (!ok) { showErr('Please agree to be contacted.'); return; }
   err.style.display = 'none';
 
