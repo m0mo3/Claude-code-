@@ -462,7 +462,6 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:0 16px;gap:10px;}
-  #bg-video{inset:unset;top:0;left:0;right:0;width:100vw;height:100vw;object-fit:cover;}
   .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
   .nav-links a{font-size:12px;letter-spacing:0.04em;}
   .nav-links a[href="#event"],.nav-links a[href="#register"]{display:none;}
@@ -776,10 +775,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 // ─── VIDEO ACTIVATION ─────────────────────────────────────────────────────────
-// Desktop: play-then-pause so scroll-scrub can write video.currentTime.
-// Mobile: forget scrubbing entirely — scrub is unreliable across iOS/Android
-// decoders. Just autoplay+loop as a normal background video, and retry on any
-// user interaction so Low Power Mode / Data Saver also start playback.
+// Same approach on mobile + desktop now: play-then-pause to unlock currentTime
+// for scroll-scrubbing. On mobile we additionally retry on the first user
+// gesture to handle iOS Low Power Mode (silently blocks autoplay until tap).
 const IS_MOBILE = window.matchMedia('(max-width:768px)').matches
                || (('ontouchstart' in window) && Math.min(window.innerWidth, window.innerHeight) <= 820);
 
@@ -788,54 +786,37 @@ const IS_MOBILE = window.matchMedia('(max-width:768px)').matches
 
   vid.addEventListener('loadedmetadata', () => ScrollTrigger.refresh(), { once: true });
 
-  if (IS_MOBILE) {
-    // Mobile: keep playing forever, never pause.
-    vid.loop = true;
-    vid.removeAttribute('controls');
+  let reactivating = false;
+  function activateVideo() {
+    if (reactivating) return;
+    reactivating = true;
+    const p = vid.play();
+    if (p && p.then) {
+      p.then(() => { vid.pause(); reactivating = false; })
+       .catch(() => { reactivating = false; });
+    } else {
+      vid.pause();
+      reactivating = false;
+    }
+  }
+  function reactivateIfStuck() {
+    if (vid.readyState < 2) return;
+    activateVideo();
+  }
+  if (vid.readyState >= 3) { activateVideo(); }
+  else { vid.addEventListener('canplay', activateVideo, { once: true }); }
 
-    let playing = false;
-    function tryPlay() {
-      if (playing && !vid.paused) return;
-      const p = vid.play();
-      if (p && p.then) {
-        p.then(() => { playing = true; }).catch(() => { playing = false; });
-      }
-    }
-    // Try immediately and on every relevant signal.
-    tryPlay();
-    ['loadeddata', 'canplay', 'canplaythrough'].forEach(evt =>
-      vid.addEventListener(evt, tryPlay));
-    // First user gesture unlocks autoplay if Low Power Mode is on.
+  ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt =>
+    vid.addEventListener(evt, () => setTimeout(activateVideo, 50)));
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(activateVideo, 50);
+  });
+
+  // Mobile-only: first user gesture unlocks autoplay if Low Power Mode is on.
+  if (IS_MOBILE) {
     ['touchstart', 'touchend', 'click', 'scroll', 'keydown'].forEach(evt =>
-      window.addEventListener(evt, tryPlay, { once: true, passive: true }));
-    // If iOS pauses on tab-switch / suspend / stall, kick it back.
-    ['pause', 'suspend', 'stalled', 'waiting', 'emptied', 'ended'].forEach(evt =>
-      vid.addEventListener(evt, () => setTimeout(tryPlay, 30)));
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) setTimeout(tryPlay, 30);
-    });
-    // If the video src 404s or decoder fails, the poster stays — that's fine.
-    window.__reactivateBgVideo = tryPlay;
-  } else {
-    // Desktop: play-then-pause activation for scroll-scrub.
-    let reactivating = false;
-    function activateVideo() {
-      if (reactivating) return;
-      reactivating = true;
-      vid.play().then(() => { vid.pause(); reactivating = false; })
-                .catch(() => { reactivating = false; });
-    }
-    function reactivateIfStuck() {
-      if (vid.readyState < 2 || vid.paused === false) return;
-      activateVideo();
-    }
-    if (vid.readyState >= 3) { activateVideo(); }
-    else { vid.addEventListener('canplay', activateVideo, { once: true }); }
-    ['suspend', 'stalled', 'waiting', 'emptied'].forEach(evt =>
-      vid.addEventListener(evt, () => setTimeout(activateVideo, 50)));
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) setTimeout(activateVideo, 50);
-    });
+      window.addEventListener(evt, activateVideo, { once: true, passive: true }));
+  }
     window.__reactivateBgVideo = reactivateIfStuck;
   }
 })();
@@ -977,8 +958,8 @@ function animatePanelIn(panel) {
 // Only seek the video when currentTime has shifted by a meaningful amount —
 // avoids dozens of redundant micro-seeks per second that cause visible stutter.
 let lastSeek = -1;
-const SEEK_EPS = 1 / 30; // ~33ms / one frame at 30fps
-if (!IS_MOBILE) ScrollTrigger.create({
+const SEEK_EPS = IS_MOBILE ? 1 / 15 : 1 / 30;
+ScrollTrigger.create({
   trigger: document.documentElement,
   start: 'top top',
   end: 'bottom bottom',
