@@ -35,7 +35,7 @@ body { background:transparent; color:var(--white); font-family:var(--fs); overfl
 #bg-image {
   position:fixed; inset:0; z-index:-2; pointer-events:none;
   background-image:url('uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg');
-  background-size:cover; background-position:center top;
+  background-size:cover; background-position:center center;
   background-repeat:no-repeat;
 }
 #bg-overlay {
@@ -194,8 +194,14 @@ footer {
 .ft-links a:hover { color:rgba(255,255,255,0.6); }
 
 @media (max-width:780px) {
-  nav { padding:0 20px; }
-  .nav-links { display:none; }
+  nav{padding:0 16px;gap:10px;}
+  .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
+  .nav-links a{font-size:12px;letter-spacing:0.04em;}
+  .nav-links a[href="index.html#event"],
+  .nav-links a[href="index.html#register"],
+  .nav-links a[href="index.html#faq"],
+  .nav-links a[href="donate.html"]{display:none;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
   .dn-hero { padding:120px 22px 60px; }
   .dn-wrap { padding:0 22px 80px; }
   .dn-section { padding:56px 0; }
