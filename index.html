@@ -97,7 +97,7 @@ body { background:transparent; color:var(--white); font-family:var(--fs); overfl
 /* ── NAV ── */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:200;
-  display:flex; align-items:center; justify-content:space-between;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
   padding:0 48px; height:64px;
   transition:background 500ms ease, border-color 500ms ease;
   border-bottom:1px solid transparent;
@@ -133,6 +133,7 @@ nav.solid {
   transition:background 200ms, transform 150ms;
 }
 .nav-cta:hover { background:var(--red-dim); transform:scale(0.97); }
+.nav-ctas { display:flex; gap:12px; justify-self:end; align-items:center; }
 
 /* ════════════════════════════════════════════════
    VIDEO SCROLL SECTION
@@ -461,7 +462,9 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  nav{padding:0 16px;gap:10px;}
+  nav{padding:0 16px;gap:10px;display:flex;}
+  .nav-ctas{gap:0;}
+  .nav-ctas a[href="donate.html"]{display:none;}
   .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
   .nav-links a{font-size:12px;letter-spacing:0.04em;}
   .nav-links a[href="#video-scroll"],.nav-links a[href="#event"],.nav-links a[href="#register"],.nav-links a[href="#faq"]{display:none;}
@@ -524,8 +527,10 @@ footer { background:rgba(1,1,15,0.85); padding:40px 48px; border-top:1px solid r
     <a href="about.html">About us</a>
     <a href="donate.html">Donate</a>
   </div>
-  <a href="donate.html" class="nav-cta">Donate now</a>
-  <a href="#register" class="nav-cta">Register now</a>
+  <div class="nav-ctas">
+    <a href="donate.html" class="nav-cta">Donate now</a>
+    <a href="#register" class="nav-cta">Register now</a>
+  </div>
 </nav>
 
 <!-- ════════════════════════════════════════════════════
