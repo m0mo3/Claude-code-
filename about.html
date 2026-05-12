@@ -153,8 +153,14 @@ footer {
 .ft-links a:hover { color:rgba(255,255,255,0.6); }
 
 @media (max-width:780px) {
-  nav { padding:0 20px; }
-  .nav-links { display:none; }
+  nav{padding:0 16px;gap:10px;}
+  .nav-links{display:flex;gap:14px;flex:1;justify-content:flex-end;margin-right:6px;}
+  .nav-links a{font-size:12px;letter-spacing:0.04em;}
+  .nav-links a[href="index.html#event"],
+  .nav-links a[href="index.html#register"],
+  .nav-links a[href="index.html#faq"],
+  .nav-links a[href="about.html"]{display:none;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
   .ab-hero { padding:120px 22px 60px; }
   .ab-wrap { padding:0 22px; }
   .ab-section { padding:64px 0; }
@@ -203,7 +209,7 @@ footer {
   <section class="ab-section">
     <div class="ab-section-eye">The athletes</div>
     <h2 class="ab-section-h">Meet <em>Nico &amp; Seric.</em></h2>
-    <p class="ab-section-p">Nicolas Chambers and Seric Critchley are Swiss national champions and U23 World Championship silver medallists. They row out of Switzerland, train through every season the Alps throw at them, and have spent years turning early mornings on the water into results that now put Olympic qualification within reach. Their progression has been steady, deliberate, and earned the hard way.</p>
+    <p class="ab-section-p">Nicolas Chambers and Seric Critchley are Swiss national champions and U23 World Championship bronze medallists. They row out of Switzerland, train through every season the Alps throw at them, and have spent years turning early mornings on the water into results that now put Olympic qualification within reach. Their progression has been steady, deliberate, and earned the hard way.</p>
     <p class="ab-section-p">Behind them sits a serious support system of coaches, training partners, and family who have shaped the athletes they are today. Ahead of them sits the road to LA 2028, which means selection regattas, international competition, and the relentless work of staying at the level required to qualify. Everything between now and the start line in Los Angeles is what Alps2LA is about.</p>
   </section>
 
