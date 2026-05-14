@@ -1252,9 +1252,25 @@ function setAccent(v, b) {
 
   function centerPanel() {
     if (!panel) return;
-    const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-    const ph = panel.offsetHeight;
-    panel.style.top = Math.max(0, (vh - ph) / 2) + 'px';
+    const apply = () => {
+      const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+      const ph = panel.getBoundingClientRect().height || panel.offsetHeight;
+      if (ph > 50) {
+        panel.style.top = Math.max(0, (vh - ph) / 2) + 'px';
+        return true;
+      }
+      return false;
+    };
+    if (apply()) return;
+    requestAnimationFrame(() => {
+      if (apply()) return;
+      requestAnimationFrame(() => {
+        if (apply()) return;
+        // Last resort: use fallback height estimate
+        const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+        panel.style.top = Math.max(0, (vh - 360) / 2) + 'px';
+      });
+    });
   }
 
   function menuOpen() {
