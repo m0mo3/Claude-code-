@@ -34,15 +34,9 @@ body { background:transparent; color:var(--white); font-family:var(--fs); overfl
 
 #bg-image {
   position:fixed; inset:0; z-index:-2; pointer-events:none;
-  background:var(--navy);
+  background:var(--ink);
 }
-#bg-overlay {
-  position:fixed; inset:0; z-index:-1; pointer-events:none;
-  background:linear-gradient(to bottom,
-    rgba(2,2,20,0.35) 0%,
-    rgba(2,2,20,0.15) 40%,
-    rgba(2,2,20,0.5) 100%);
-}
+#bg-overlay { display:none; }
 #bg-scanlines {
   position:fixed; inset:0; z-index:-1; pointer-events:none;
   opacity:0.025;
