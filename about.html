@@ -363,9 +363,16 @@ gsap.utils.toArray('.ab-section').forEach((section) => {
   const toggle   = document.getElementById('menu-toggle');
   if (!menu || !toggle) return;
   const backdrop = menu.querySelector('.mm-backdrop');
+  const panel    = menu.querySelector('.mm-panel');
   const links    = menu.querySelectorAll('.mm-link');
   const RM       = matchMedia('(prefers-reduced-motion:reduce)').matches;
   let lastFocus  = null;
+
+  function centerPanel() {
+    if (!panel) return;
+    const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+    panel.style.top = (vh / 2) + 'px';
+  }
 
   function menuOpen() {
     if (menu.classList.contains('is-open')) return;
@@ -377,6 +384,8 @@ gsap.utils.toArray('.ab-section').forEach((section) => {
     toggle.setAttribute('aria-label', 'Close menu');
     document.body.classList.add('menu-open');
     if (typeof lenis !== 'undefined' && lenis.stop) lenis.stop();
+
+    centerPanel();
 
     gsap.killTweensOf([menu, links]);
     gsap.fromTo(menu,  { autoAlpha:0 }, { autoAlpha:1, duration:RM?0:0.45, ease:'power3.out' });
@@ -411,6 +420,9 @@ gsap.utils.toArray('.ab-section').forEach((section) => {
   links.forEach(l => l.addEventListener('click', menuClose));
   document.addEventListener('keydown', e => { if (e.key==='Escape' && menu.classList.contains('is-open')) menuClose(); });
   matchMedia('(min-width:769px)').addEventListener('change', e => { if (e.matches) menuClose(); });
+
+  window.addEventListener('resize', () => { if (menu.classList.contains('is-open')) centerPanel(); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', () => { if (menu.classList.contains('is-open')) centerPanel(); });
 })();
 </script>
 </body>
