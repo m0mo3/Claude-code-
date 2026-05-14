@@ -127,9 +127,9 @@ nav {
   -webkit-backdrop-filter:blur(18px) saturate(1.4);
 }
 .mm-panel {
-  position:relative;
+  position:absolute; inset:0;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  width:100%; max-width:520px; padding:24px;
+  padding:80px 24px 24px;
 }
 .mm-links { display:flex; flex-direction:column; gap:18px; align-items:center; width:100%; }
 .mm-link {
@@ -147,6 +147,19 @@ nav {
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 body.menu-open { overflow:hidden; }
+body.menu-open #mainnav {
+  z-index:400;
+  background:transparent;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  border-bottom-color:transparent;
+}
+body.menu-open .nav-logo,
+body.menu-open .nav-cta,
+body.menu-open .nav-ctas {
+  visibility:hidden;
+  pointer-events:none;
+}
 
 .dn-hero {
   min-height:80vh;
