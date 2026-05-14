@@ -129,8 +129,8 @@ nav {
 }
 .mm-panel {
   position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%, -50%);
+  top:0; left:50%;
+  transform:translateX(-50%);
   display:flex; flex-direction:column; align-items:center;
   width:100%; max-width:520px;
   padding:0 24px;
@@ -422,7 +422,8 @@ gsap.utils.toArray('.dn-section').forEach((section) => {
   function centerPanel() {
     if (!panel) return;
     const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-    panel.style.top = (vh / 2) + 'px';
+    const ph = panel.offsetHeight;
+    panel.style.top = Math.max(0, (vh - ph) / 2) + 'px';
   }
 
   function menuOpen() {
