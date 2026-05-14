@@ -7,8 +7,8 @@
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="description" content="Support Nico Chambers and Seric Critchley on their journey to the 2028 Los Angeles Olympics.">
-<title>Donate · Alps2LA - Be the First to Believe</title>
+<meta name="description" content="Privacy notice for Alps2LA - what we collect, how we use it, and your rights.">
+<title>Privacy · Alps2LA - Be the First to Believe</title>
 <style>
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-normal.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family:'DM Serif Display'; src:url('fonts/dm-serif-display-latin-400-italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
@@ -23,7 +23,6 @@
 :root {
   --navy:#000080;
   --red:#FF0000;
-  --red-dim:#cc0000;
   --white:#FFFFFF;
   --ink:#020214;
   --fd:'DM Serif Display',Georgia,serif;
@@ -35,7 +34,7 @@ body { background:transparent; color:var(--white); font-family:var(--fs); overfl
 
 #bg-image {
   position:fixed; inset:0; z-index:-2; pointer-events:none;
-  background-image:url('uploads/0dc9bf81-7b13-4ac0-b926-1294c414a848.jpeg');
+  background-image:url('uploads/b91ce3e8-ea2e-4cef-88fb-3f9f50c76f13.jpeg');
   background-size:cover; background-position:center center;
   background-repeat:no-repeat;
 }
@@ -148,91 +147,72 @@ nav {
 }
 body.menu-open { overflow:hidden; }
 
-.dn-hero {
-  min-height:80vh;
+.pr-hero {
+  min-height:60vh;
   display:flex; align-items:center; justify-content:center;
-  padding:140px 48px 80px; text-align:center;
+  padding:140px 48px 60px; text-align:center;
   position:relative;
 }
-.dn-eyebrow {
+.pr-eyebrow {
   font-family:var(--fs); font-size:11px; font-weight:700;
   letter-spacing:0.28em; text-transform:uppercase;
   color:rgba(255,255,255,0.88); margin-bottom:20px;
 }
-.dn-h1 {
+.pr-h1 {
   font-family:var(--fd); font-weight:400; color:#fff;
-  font-size:clamp(48px,8vw,128px); line-height:1.02;
+  font-size:clamp(48px,8vw,108px); line-height:1.02;
   letter-spacing:-0.03em; margin:0;
 }
-.dn-h1 em { font-family:Georgia,serif; font-style:italic; color:var(--red); }
-.dn-sub {
+.pr-h1 em { font-family:Georgia,serif; font-style:italic; color:var(--red); }
+.pr-sub {
   margin-top:28px; max-width:600px; margin-left:auto; margin-right:auto;
   font-family:var(--fs); font-size:16px; font-weight:300;
   color:rgba(255,255,255,0.9); line-height:1.7;
 }
 
-.dn-wrap { max-width:780px; margin:0 auto; padding:0 48px 120px; }
-.dn-section { padding:80px 0; border-top:1px solid rgba(255,255,255,0.06); }
-.dn-section:first-of-type { border-top:none; }
-.dn-section-eye {
+.pr-wrap { max-width:880px; margin:0 auto; padding:0 48px 80px; }
+.pr-updated {
+  font-family:var(--fs); font-size:12px; font-weight:500;
+  letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(255,255,255,0.45);
+  padding:20px 0 0; text-align:left;
+}
+.pr-section {
+  padding:60px 0;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.pr-section:first-of-type { border-top:none; padding-top:40px; }
+.pr-section-eye {
   font-family:var(--fs); font-size:11px; font-weight:700;
   letter-spacing:0.24em; text-transform:uppercase;
-  color:rgba(255,255,255,0.8); margin-bottom:18px;
+  color:rgba(255,255,255,0.8); margin-bottom:14px;
 }
-.dn-section-h {
+.pr-section-h {
   font-family:var(--fd); font-weight:400; color:#fff;
-  font-size:clamp(28px,4vw,52px); line-height:1.1;
-  letter-spacing:-0.02em; margin:0 0 24px;
+  font-size:clamp(28px,4vw,48px); line-height:1.1;
+  letter-spacing:-0.02em; margin:0 0 22px;
 }
-.dn-section-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.75); }
-.dn-section-p {
+.pr-section-h em { font-family:Georgia,serif; font-style:italic; color:rgba(255,255,255,0.75); }
+.pr-section-p {
   font-family:var(--fs); font-size:16px; font-weight:300;
-  color:rgba(255,255,255,0.92); line-height:1.85;
+  color:rgba(255,255,255,0.92); line-height:1.85; max-width:680px;
 }
-.dn-section-p + .dn-section-p { margin-top:18px; }
-
-.dn-card {
-  margin-top:56px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:48px;
-  text-align:center;
+.pr-section-p + .pr-section-p { margin-top:14px; }
+.pr-section-p a { color:#fff; text-decoration:underline; }
+.pr-list {
+  list-style:none; padding:0; margin:14px 0 0;
+  font-family:var(--fs); font-size:16px; font-weight:300;
+  color:rgba(255,255,255,0.92); line-height:1.85; max-width:680px;
 }
-.dn-card-label {
-  font-family:var(--fs); font-size:11px; font-weight:700;
-  letter-spacing:0.24em; text-transform:uppercase;
-  color:#fff; margin-bottom:16px;
+.pr-list li {
+  position:relative; padding-left:22px; margin-bottom:6px;
 }
-.dn-card-h {
-  font-family:var(--fd); font-size:clamp(28px,4vw,48px);
-  color:#fff; margin-bottom:12px; line-height:1.1;
+.pr-list li::before {
+  content:''; position:absolute; left:0; top:14px;
+  width:8px; height:1px; background:var(--red);
 }
-.dn-card-sub {
-  font-family:var(--fs); font-size:14px; font-weight:300;
-  color:rgba(255,255,255,0.85); line-height:1.7; margin-bottom:36px;
-}
-.dn-btn {
-  display:inline-block;
-  background:var(--red); color:#fff;
-  font-family:var(--fs); font-size:15px; font-weight:700;
-  letter-spacing:0.02em;
-  padding:18px 48px; border-radius:9999px;
-  text-decoration:none;
-  box-shadow:0 4px 32px rgba(255,0,0,0.4);
-  transition:background 150ms, transform 150ms, box-shadow 200ms;
-}
-.dn-btn:hover { background:var(--red-dim); transform:scale(0.97); box-shadow:0 8px 36px rgba(255,0,0,0.55); }
-.dn-btn.disabled {
-  background:rgba(255,255,255,0.08);
-  color:rgba(255,255,255,0.3);
-  box-shadow:none; cursor:default; pointer-events:none;
-}
-.dn-coming {
-  margin-top:16px;
-  font-family:var(--fs); font-size:12px;
-  color:#fff;
-}
+.pr-list li strong { color:#fff; font-weight:600; }
+.pr-list + .pr-section-p { margin-top:18px; }
 
 footer {
   background:rgba(1,1,15,0.85); padding:40px 48px;
@@ -251,10 +231,9 @@ footer {
   .nav-links{display:none;}
   .nav-cta{padding:8px 14px;font-size:12px;}
   .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
-  .dn-hero { padding:120px 22px 60px; }
-  .dn-wrap { padding:0 22px 80px; }
-  .dn-section { padding:56px 0; }
-  .dn-card { padding:32px 24px; }
+  .pr-hero { padding:120px 22px 50px; }
+  .pr-wrap { padding:0 22px 60px; }
+  .pr-section { padding:48px 0; }
   footer { padding:32px 22px; flex-direction:column; align-items:flex-start; }
 }
 </style>
@@ -275,7 +254,7 @@ footer {
     <a href="index.html#register">Register</a>
     <a href="index.html#faq">FAQ</a>
     <a href="about.html">About us</a>
-    <a href="donate.html" class="active">Donate</a>
+    <a href="donate.html">Donate</a>
   </div>
   <a href="index.html#register" class="nav-cta">Register now</a>
   <button id="menu-toggle" class="menu-toggle" type="button"
@@ -299,40 +278,87 @@ footer {
       <a href="index.html#register"     class="mm-link">Register</a>
       <a href="index.html#faq"          class="mm-link">FAQ</a>
       <a href="about.html"              class="mm-link">About us</a>
-      <a href="donate.html"             class="mm-link active">Donate</a>
+      <a href="donate.html"             class="mm-link">Donate</a>
     </nav>
   </div>
 </div>
 
-<section class="dn-hero">
+<section class="pr-hero">
   <div>
-    <div class="dn-eyebrow">Support the journey</div>
-    <h1 class="dn-h1">Put your name on<br><em>the road to LA.</em></h1>
-    <p class="dn-sub">You don't need to attend the event to be part of this. Every franc goes directly toward getting Nico and Seric to Los Angeles 2028.</p>
+    <div class="pr-eyebrow">Privacy notice</div>
+    <h1 class="pr-h1">Your data,<br><em>our promise.</em></h1>
+    <p class="pr-sub">A short note on what we collect when you register, how we use it, and your rights.</p>
   </div>
 </section>
 
-<div class="dn-wrap">
+<div class="pr-wrap">
 
-  <section class="dn-section">
-    <div class="dn-section-eye">Where it goes</div>
-    <h2 class="dn-section-h">Your donation funds the <em>journey.</em></h2>
-    <p class="dn-section-p">The gap between national champion and Olympic athlete is not closed by talent alone. It takes training camps, racing fees, equipment, international travel, recovery, and the hundreds of costs that accumulate over a four-year Olympic cycle. Every franc donated through Alps2LA goes directly toward those costs for Nico Chambers and Seric Critchley.</p>
-    <p class="dn-section-p">There is no overhead, no organisation in the middle. This is a student-led fundraiser run by friends. The money goes to the athletes, and the athletes go to Los Angeles.</p>
+  <p class="pr-updated">Last updated: 14 May 2026</p>
+
+  <section class="pr-section">
+    <div class="pr-section-eye">Our promise</div>
+    <h2 class="pr-section-h">A few words to start.</h2>
+    <p class="pr-section-p">Alps2LA is a student-led fundraising event organised in Montreux to support Swiss national rowers Nicolas Chambers and Seric Critchley on their road to LA 2028. This page explains what information we collect when you register, how we use it, and your rights regarding your data.</p>
   </section>
 
-  <section class="dn-section">
-    <div class="dn-section-eye">Make your contribution</div>
-    <h2 class="dn-section-h">Donate <em>now.</em></h2>
-    <p class="dn-section-p">Choose any amount. Every contribution, large or small, moves the number forward and puts your name on this chapter of the journey.</p>
+  <section class="pr-section">
+    <div class="pr-section-eye">What we collect</div>
+    <h2 class="pr-section-h">The data you share with us.</h2>
+    <p class="pr-section-p">When you register through our form, you give us:</p>
+    <ul class="pr-list">
+      <li>First name and last name</li>
+      <li>Age</li>
+      <li>Gender (or "prefer not to say")</li>
+      <li>Email address</li>
+      <li>Dietary restrictions or allergies</li>
+      <li>How you heard about the event</li>
+      <li>The time you submitted the form</li>
+    </ul>
+    <p class="pr-section-p">If you complete payment, we'll also receive a record of your transaction from Stripe (transaction ID, amount, and payment status - we never see your card details).</p>
+    <p class="pr-section-p">We do not use cookies, trackers, or analytics on this site.</p>
+  </section>
 
-    <div class="dn-card">
-      <div class="dn-card-label">Secure donation</div>
-      <div class="dn-card-h">Support Nico &amp; Seric</div>
-      <div class="dn-card-sub">Powered by Stripe · Secure · Any amount welcome</div>
-      <a href="#" id="donate-btn" class="dn-btn disabled">Donate now →</a>
-      <p class="dn-coming" id="donate-note">Donation link coming soon - check back shortly.</p>
-    </div>
+  <section class="pr-section">
+    <div class="pr-section-eye">How we use it</div>
+    <h2 class="pr-section-h">Every field has a purpose.</h2>
+    <ul class="pr-list">
+      <li><strong>Your name and email</strong> - to confirm your registration and send you updates about the event</li>
+      <li><strong>Your age and gender</strong> - to plan the evening responsibly and understand our audience</li>
+      <li><strong>Your dietary information</strong> - to make sure the caterer accommodates you on the night</li>
+      <li><strong>How you heard about us</strong> - to understand which channels work best</li>
+      <li><strong>Your timestamp</strong> - to manage limited capacity on a first-come basis</li>
+      <li><strong>Your payment data</strong> - to confirm your CHF 15 entry fee with Stripe</li>
+    </ul>
+    <p class="pr-section-p">We will email you only about Alps2LA. We will not add you to unrelated mailing lists.</p>
+  </section>
+
+  <section class="pr-section">
+    <div class="pr-section-eye">Who has access</div>
+    <h2 class="pr-section-h">A short list.</h2>
+    <ul class="pr-list">
+      <li><strong>Alps2LA organising team</strong> - we read every registration</li>
+      <li><strong>Stripe</strong> - processes your CHF 15 entry payment</li>
+    </ul>
+    <p class="pr-section-p">We do not sell, rent, or share your data with anyone outside the services above.</p>
+  </section>
+
+  <section class="pr-section">
+    <div class="pr-section-eye">How long we keep it</div>
+    <h2 class="pr-section-h">Deleted after the event.</h2>
+    <p class="pr-section-p">We delete the full registration list within <strong>30 days after the event</strong> (by mid-July 2026 for the 5th June 2026 event). Stripe retains payment records for longer as required by Swiss tax law, typically around 10 years. You can ask us to delete your data sooner - see below.</p>
+  </section>
+
+  <section class="pr-section">
+    <div class="pr-section-eye">Your rights and contact</div>
+    <h2 class="pr-section-h">You're in control.</h2>
+    <p class="pr-section-p">Under Swiss data protection law (FADP) and the EU GDPR, you have the right to:</p>
+    <ul class="pr-list">
+      <li>See what data we hold on you</li>
+      <li>Correct anything that's wrong</li>
+      <li>Have your data deleted</li>
+      <li>Withdraw your consent at any time</li>
+    </ul>
+    <p class="pr-section-p">To exercise any of these rights, or if you have any questions about your data, email us at <a href="mailto:info@alps2la.com">info@alps2la.com</a>. We'll respond within seven days.</p>
   </section>
 
 </div>
@@ -352,15 +378,6 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
-const DONATION_LINK = 'PLACEHOLDER_DONATION_LINK';
-
-if (DONATION_LINK.startsWith('http')) {
-  const btn = document.getElementById('donate-btn');
-  btn.href = DONATION_LINK;
-  btn.classList.remove('disabled');
-  document.getElementById('donate-note').style.display = 'none';
-}
-
 history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 
@@ -376,16 +393,16 @@ gsap.ticker.add(time => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
 lenis.on('scroll', ScrollTrigger.update);
 
-gsap.fromTo('.dn-eyebrow, .dn-h1, .dn-sub',
+gsap.fromTo('.pr-eyebrow, .pr-h1, .pr-sub',
   { y: 24, opacity: 0 },
   { y: 0, opacity: 1, stagger: 0.12, duration: 0.9, ease: 'power3.out', delay: 0.15 }
 );
 
-gsap.utils.toArray('.dn-section').forEach((section) => {
-  const items = section.querySelectorAll('.dn-section-eye, .dn-section-h, .dn-section-p, .dn-card');
+gsap.utils.toArray('.pr-section').forEach((section) => {
+  const items = section.querySelectorAll('.pr-section-eye, .pr-section-h, .pr-section-p, .pr-list');
   gsap.fromTo(items,
     { y: 30, opacity: 0 },
-    { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: 'power3.out',
+    { y: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: 'power3.out',
       scrollTrigger: { trigger: section, start: 'top 82%', end: 'bottom 10%', toggleActions: 'play reset play reset' }
     }
   );
