@@ -1372,12 +1372,13 @@ async function submitForm() {
   btn.textContent = 'Sending…';
 
   try {
-    await fetch(MAKE_WEBHOOK, {
+    const res = await fetch(MAKE_WEBHOOK, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ first, last, age, gender, email, diet, source,
                              submitted_at: new Date().toISOString() })
     });
+    if (!res.ok) throw new Error('Webhook returned ' + res.status);
   } catch (e) {
     btn.disabled = false;
     btn.textContent = 'Secure my place →';
